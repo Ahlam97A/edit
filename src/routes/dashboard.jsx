@@ -14,7 +14,6 @@ import Typography from "views/Typography/Typography.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
-
 import  EditCriteria from "views/Maps/Maps.jsx";
 
 const dashboardRoutes = [
