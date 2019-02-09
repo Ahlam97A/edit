@@ -116,6 +116,8 @@ class TypographyPage extends React.Component {
       .then(data => console.log(JSON.stringify(data))) 
       .catch(error => console.error(error));
   
+
+      
   }
   render() {
    // var props;

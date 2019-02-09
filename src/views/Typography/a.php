@@ -33,11 +33,17 @@ $payload = file_get_contents('php://input');
 $input = json_decode($payload, TRUE);
 
         $first_name =  $input['name'];
-        $last_name = $input['id'];
+        $studentid = $input['id'];
         $id = $input['id_st'];
+        $pass=$input['pwd'];
+        $date=$input['DateofBirth'];
+        $p_id=$input['p_id'];
+        $p_pwd=$input['p_pwd'];
+        $address=$input['address'];
+        $phone=$input['phone'];
  
 // Attempt insert query execution
-$sql = "INSERT INTO student(name, id,classid) VALUES ('$first_name', '$last_name', '$id')";
+$sql = "INSERT INTO student(name, id,classid,date ,password,part_id,parn_pass,addresss,phone) VALUES ('$first_name', '$studentid', '$id' ,'$pass','$date','$p_id','$p_pwd','$address','$phone')";
 echo $sql;
 if(mysqli_query($conn, $sql)){
     echo "Records added successfully.";
