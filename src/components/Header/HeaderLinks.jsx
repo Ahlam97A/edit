@@ -1,29 +1,69 @@
-import React from "react";
-import classNames from "classnames";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
+/*import Hidden from "@material-ui/core/Hidden";
+import Person from "@material-ui/icons/Person";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Hidden from "@material-ui/core/Hidden";
-import Poppers from "@material-ui/core/Popper";
-// @material-ui/icons
-import Person from "@material-ui/icons/Person";
-import Notifications from "@material-ui/icons/Notifications";
-import Dashboard from "@material-ui/icons/Dashboard";
+import { Switch } from "@material-ui/core";
+import withStyles from "@material-ui/core/styles/withStyles";
 import Search from "@material-ui/icons/Search";
-// core components
-import CustomInput from "components/CustomInput/CustomInput.jsx";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Notifications from "@material-ui/icons/Notifications";
+import Poppers from "@material-ui/core/Popper";
+import Dashboard from "@material-ui/icons/Dashboard";
+
+import React, { Component } from "react";
+
+import classNames from "classnames";
+
+import { Route, Redirect } from 'react-router';
+
+import UserProfile from "views/UserProfile/UserProfile.jsx";
+
 import Button from "components/CustomButtons/Button.jsx";
+import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle.jsx";
 
+
+function postData(url = ``, data = {}) {
+  // Default options are marked with *
+  return fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  })
+    .then(response => response.text()); // parses response to JSON
+}
+
+
+
+
+
+
 class HeaderLinks extends React.Component {
+
+  constructor(props) {
+    super(props);
+    //this.home = this.home.bind(this);
+  }
+
   state = {
     open: false
   };
+
+
+
+
+
   handleToggle = () => {
     this.setState(state => ({ open: !state.open }));
   };
@@ -36,39 +76,64 @@ class HeaderLinks extends React.Component {
     this.setState({ open: false });
   };
 
+  handleClick = () => {
+    window.location.assign('/user/');
+  }
+
+
+  handleClick1 = () => {
+    window.location.assign('/notifications/');
+  }
+
+
+
   render() {
+
     const { classes } = this.props;
     const { open } = this.state;
+
     return (
       <div>
         <div className={classes.searchWrapper}>
           <CustomInput
-            formControlProps={{
-              className: classes.margin + " " + classes.search
-            }}
-            inputProps={{
-              placeholder: "Search",
-              inputProps: {
-                "aria-label": "Search"
-              }
-            }}
+            formControlProps={{ className: classes.margin + " " + classes.search }}
+            inputProps={{ placeholder: "Search", inputProps: { "aria-label": "Search" } }}
           />
-          <Button color="white" aria-label="edit" justIcon round>
-            <Search />
-          </Button>
+          <Button color="white" aria-label="edit" justIcon round> <Search /></Button>
         </div>
+
+
+
+
         <Button
-          color={window.innerWidth > 959 ? "transparent" : "white"}
+          color={window.innerWidth > 2000 ? "transparent" : "primary"}
+          justIcon={window.innerWidth > 2000}
+          simple={!(window.innerWidth > 2000)}
+          aria-label="ExitToAppIcon"
+        //className={classes.buttonLink}
+        >
+          <h5><a>LogOut</a></h5>
+
+        </Button>
+
+
+        <Button
+          aria-label="Dashboard"
           justIcon={window.innerWidth > 959}
           simple={!(window.innerWidth > 959)}
-          aria-label="Dashboard"
+          color={window.innerWidth > 959 ? "transparent" : "white"}
           className={classes.buttonLink}
+
         >
-          <Dashboard className={classes.icons} />
-          <Hidden mdUp implementation="css">
-            <p className={classes.linkText}>Dashboardahlam</p>
-          </Hidden>
+
+          <a onClick={() => { document.location.href = "../../views/Dashboard/Dashboard.jsx"; }}><Dashboard /> </a>
         </Button>
+
+
+
+
+
+
         <div className={classes.manager}>
           <Button
             buttonRef={node => {
@@ -82,74 +147,11 @@ class HeaderLinks extends React.Component {
             onClick={this.handleToggle}
             className={classes.buttonLink}
           >
-            <Notifications className={classes.icons} />
-            <span className={classes.notifications}>5</span>
-            <Hidden mdUp implementation="css">
-              <p onClick={this.handleClick} className={classes.linkText}>
-                Notification
-              </p>
-            </Hidden>
+            <a><Notifications onClick={this.handleClick1} /></a>
           </Button>
-          <Poppers
-            open={open}
-            anchorEl={this.anchorEl}
-            transition
-            disablePortal
-            className={
-              classNames({ [classes.popperClose]: !open }) +
-              " " +
-              classes.pooperNav
-            }
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                id="menu-list-grow"
-                style={{
-                  transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom"
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={this.handleClose}>
-                    <MenuList role="menu">
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        Mike John responded to your email
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        You have 5 new tasks
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        You're now friend with Andrew
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        Another Notification
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        Another One
-                      </MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Poppers>
         </div>
+
+
         <Button
           color={window.innerWidth > 959 ? "transparent" : "white"}
           justIcon={window.innerWidth > 959}
@@ -157,11 +159,192 @@ class HeaderLinks extends React.Component {
           aria-label="Person"
           className={classes.buttonLink}
         >
-          <Person className={classes.icons} />
-          <Hidden mdUp implementation="css">
-            <p className={classes.linkText}>Profile ahlam</p>
-          </Hidden>
+          <a><Person onClick={this.handleClick} /></a>
+
         </Button>
+
+
+
+
+      </div>
+    );
+  }
+}
+
+export default withStyles(headerLinksStyle)(HeaderLinks);
+*/
+import Person from "@material-ui/icons/Person";
+import Notifications from "@material-ui/icons/Notifications";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+import { Switch } from "@material-ui/core";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Search from "@material-ui/icons/Search";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Hidden from "@material-ui/core/Hidden";
+import Poppers from "@material-ui/core/Popper";
+import Dashboard from "@material-ui/icons/Dashboard";
+
+import React, { Component } from "react";
+
+import classNames from "classnames";
+
+import { Route, Redirect } from 'react-router';
+
+import UserProfile from "views/UserProfile/UserProfile.jsx";
+
+import Button from "components/CustomButtons/Button.jsx";
+import CustomInput from "components/CustomInput/CustomInput.jsx";
+
+import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle.jsx";
+
+
+function postData(url = ``, data = {}) {
+  // Default options are marked with *
+  return fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  })
+    .then(response => response.text()); // parses response to JSON
+}
+
+
+
+
+
+
+class HeaderLinks extends React.Component {
+
+  constructor(props) {
+    super(props);
+    //this.home = this.home.bind(this);
+  }
+
+  state = {
+    open: false
+  };
+
+
+
+
+
+  handleToggle = () => {
+    this.setState(state => ({ open: !state.open }));
+  };
+
+  handleClose = event => {
+    if (this.anchorEl.contains(event.target)) {
+      return;
+    }
+
+    this.setState({ open: false });
+  };
+
+  handleClick = () => {
+    window.location.assign('/user/');
+  }
+
+
+  handleClick1 = () => {
+    window.location.assign('/notifications/');
+  }
+
+
+
+  render() {
+
+    const { classes } = this.props;
+    const { open } = this.state;
+
+    return (
+      <div>
+
+<Button
+          color={window.innerWidth > 2000 ? "transparent" : "primary"}
+          justIcon={window.innerWidth > 2000}
+          simple={!(window.innerWidth > 2000)}
+          aria-label="ExitToAppIcon"
+        //className={classes.buttonLink}
+        >
+          <h5><a>PrincipalName</a></h5>
+
+        </Button>
+
+
+
+
+        <Button
+          color={window.innerWidth > 2000 ? "transparent" : "primary"}
+          justIcon={window.innerWidth > 2000}
+          simple={!(window.innerWidth > 2000)}
+          aria-label="ExitToAppIcon"
+        //className={classes.buttonLink}
+        >
+          <h5><a>LogOut</a></h5>
+
+        </Button>
+
+
+        <Button
+          aria-label="Dashboard"
+          justIcon={window.innerWidth > 959}
+          simple={!(window.innerWidth > 959)}
+          color={window.innerWidth > 959 ? "transparent" : "white"}
+          className={classes.buttonLink}
+
+        >
+
+          <a onClick={() => { document.location.href = "../../views/Dashboard/Dashboard.jsx"; }}><Dashboard /> </a>
+        </Button>
+
+
+
+
+
+
+        <div className={classes.manager}>
+          <Button
+            buttonRef={node => {
+              this.anchorEl = node;
+            }}
+            color={window.innerWidth > 959 ? "transparent" : "white"}
+            justIcon={window.innerWidth > 959}
+            simple={!(window.innerWidth > 959)}
+            aria-owns={open ? "menu-list-grow" : null}
+            aria-haspopup="true"
+            onClick={this.handleToggle}
+            className={classes.buttonLink}
+          >
+            <a><Notifications onClick={this.handleClick1} /></a>
+          </Button>
+        </div>
+
+
+        <Button
+          color={window.innerWidth > 959 ? "transparent" : "white"}
+          justIcon={window.innerWidth > 959}
+          simple={!(window.innerWidth > 959)}
+          aria-label="Person"
+          className={classes.buttonLink}
+        >
+          <a><Person onClick={this.handleClick} /></a>
+
+        </Button>
+
+
+
+
       </div>
     );
   }
