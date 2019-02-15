@@ -1,11 +1,11 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
-import Unarchive from "@material-ui/icons/Unarchive";
-import Person from "@material-ui/icons/Person";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import BubbleChart from "@material-ui/icons/BubbleChart";
 import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
+import Unarchive from "@material-ui/icons/Unarchive";
+import Person from "@material-ui/icons/Person";
+import LibraryBooks from "@material-ui/icons/LibraryBooks";
 
 import  EditCriteria from "views/Maps/Maps.jsx";
 import Icons from "views/Icons/Icons.jsx";
@@ -55,7 +55,7 @@ const dashboardRoutes = [
   {
     path: "/Edit Criteria",
     sidebarName: "SchoolProfile",
-    navbarName: "EditCriteria",
+    navbarName: "Profile",
     icon: Person,
    component: EditCriteria
   },

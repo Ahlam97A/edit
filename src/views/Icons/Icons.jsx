@@ -197,6 +197,7 @@ import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 import Table from "components/Table/Table.jsx";
 import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx";
 
+import Build from "views/Icons/Table.jsx";
 
 
 const style = {
@@ -262,6 +263,29 @@ function postData(url = ``, data = {}) {
         .then(response => response.text()); // parses response to JSON
 }
 
+function getData(url = ``, data = {}) {
+    // Default options are marked with *
+    return fetch(url, {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+        //body: JSON.stringify(data), // body data type must match "Content-Type" header
+    })
+        .then(response => response.text()); // parses response to JSON
+}
+
+
+
+
+
 
 
 
@@ -277,14 +301,35 @@ class Icons extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmit3 = this.handleSubmit3.bind(this);
         this.handleSubmit4 = this.handleSubmit4.bind(this);
+        this.handleSubmit5 = this.handleSubmit5.bind(this);
+        this.contantaa=this.contantaa.bind(this);
+
+
     }
 
+    /*  
+  componentDidMount(){
+      fetch('http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php')
+      .then(response => response.text())
+      .then(json =>{
+          this.setState({
+             isLoad:True,
+              items:json,
+          })
+      });
+  }
+  */
+ 
+   
 
     updateInput = (event) => {
         let state = {};
         state[event.target.name] = event.target.value;
         this.setState(state);
     }
+
+
+
     handleSubmit = (event) => {
         event.preventDefault();
         //alert('Handle it on your own');
@@ -312,11 +357,31 @@ class Icons extends React.Component {
             .catch(error => console.error(error));
 
     }
+    handleSubmit5 = (event) => {
+        event.preventDefault();
+        //alert('Handle it on your own');
+        console.log(this.state);
+        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`, this.state)
+            .then(data => console.log(JSON.stringify(data)))
+            .catch(error => console.error(error));
+        <Build />
+
+    }
+    contantaa =(event)=>{
+        event.preventDefault();
+        console.log(this.state);
+        
+
+    
+    }
+
 
 
 
     render() {
         // var props;
+        var { isLoad, items } = this.state;
+
         const { classes } = this.props;
         const styleInput = {
             width: "100%",
@@ -428,7 +493,7 @@ class Icons extends React.Component {
                                                                 <InputForm inputType="text" inputKey="city" inputLabel="City :" updateInput={this.updateInput} />
                                                                 <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" updateInput={this.updateInput} />
                                                                 <InputForm inputType="text" inputKey="address" inputLabel="Address : " updateInput={this.updateInput} />
-                                                                <InputForm inputType="number" inputPlaceholder="+970" inputKey="phone" inputLabel="Phone : " updateInput={this.updateInput} />
+                                                                <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " updateInput={this.updateInput} />
 
 
                                                             </GridContainer>
@@ -437,24 +502,27 @@ class Icons extends React.Component {
                                                         <br />
                                                         <CardHeader color="danger">
                                                             <h4 className={classes.cardTitleWhite}>Show All classes</h4>
-                                                                <p></p>
+                                                            <p></p>
                                                         </CardHeader>
 
 
                                                         <CardBody>
+                                                            
                                                             <Table
                                                                 tableHeaderColor="danger"
-                                                                tableHead={["Class Level","Section"]}
+                                                                tableHead={["Class Level", "Section"]}
                                                                 tableData={[
                                                                     ["1", "Dakota Rice"],
                                                                     ["2", "Minerva Hooper"],
                                                                     ["3", "Sage Rodriguez"],
                                                                     ["4", "Philip Chaney"]
                                                                 ]}
+                                                            
+
                                                             />
                                                         </CardBody>
                                                         <CardFooter>
-                                                            <Button color="info" name="Add" type="submit" value="Add">Add</Button>
+                                                            <Button color="info" name="Add" type="submit" value="Add" >Add</Button>
                                                         </CardFooter>
                                                     </Card>
                                                 </GridItem>
@@ -542,9 +610,9 @@ class Icons extends React.Component {
                                     tabName: "Search",
                                     tabIcon: Code,
                                     tabContent: (
-                                        <form action="search.php" method="post">
+                                        <form action="search.php" onSubmit={this.handleSubmit5}>
                                             <GridContainer>
-                                                <GridItem xs={12} sm={12} md={10}>
+                                                <GridItem xs={12} sm={12} md={12}>
                                                     <Card>
                                                         <CardHeader color="info">
                                                             <h4 className={classes.cardTitleWhite}>Search on a specific Teacher</h4>
@@ -553,13 +621,32 @@ class Icons extends React.Component {
 
                                                         <CardBody>
                                                             <div className={classes.searchWrapper} style={{ textAlign: "center" }} >
-                                                                <input style={{ width: "50%", color: "#AAAAAA", margin: "3px 0", height: "40px", border: "1px solid #ccc", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", borderTopLeftRadius: "10px" }}
-                                                                    type="Search" Placeholder="  Search" name="search" />
-                                                                <Button color="white" aria-label="edit" justIcon round
+                                                                <input style={{ width: "50%", color: "#000", margin: "3px 0", height: "40px", border: "1px solid #ccc", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", borderTopLeftRadius: "10px" }}
+                                                                    type="text" placeholder="Search" name="search" />
+                                                                <Button color="white" justIcon round name="search" type="submit" value="search"  onChange={this.updateInput}
                                                                 //onClick={this.toggleHidden.bind(this)}
                                                                 >
-                                                                    <Search />
+                                                                    <Search onSubmit={this.handleSubmit5}/>
+
                                                                 </Button>
+                                                                <CardBody>
+                                                                    {/*}
+                                                                    <Table action="search.php" onSubmit={this.handleSubmit5}
+                                                                        tableHeaderColor="danger"
+                                                                        tableHead={["Class Level", "Section"]}
+                                                                        tableData={[
+                                                                            ["wcho", "Dakota Rice"],
+                                                                            ["2", "Minerva Hooper"],
+                                                                            ["3", "Sage Rodriguez"],
+                                                                            ["4", "Philip Chaney"]
+                                                                        ]}
+                                                                    />
+                                                                    */}
+                                                                    
+                                                                    
+                                                                    <Build />
+
+                                                                </CardBody>
                                                             </div>
                                                         </CardBody>
 
