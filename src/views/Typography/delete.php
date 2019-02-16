@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 $payload = file_get_contents('php://input');
 $input = json_decode($payload, true);
 
-$Last_name = $input['name'];
+$Last_name = $input['fname'];
 $id = $input['id'];
 
 $sql = "DELETE FROM student  WHERE id='$id' and  name='$Last_name'";

@@ -26,8 +26,6 @@ function getData(url = ``, data = {}) {
 
 class Build extends Component {
 
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -57,10 +55,6 @@ class Build extends Component {
         //this.serverRequest.abort();
     }
 
-
-
-
-
     updateInput = (event) => {
         let state = {};
         state[event.target.name] = event.target.value;
@@ -78,121 +72,117 @@ class Build extends Component {
             .catch(error => console.error(error));
 
     }
-    contents=(event)=>{
+    contents = (event) => {
         event.preventDefault();
         //alert('Handle it on your own');
         console.log(this.state);
         <div className="Table">
-                <table style={{background:"pink",border:" 1px solid black"}} onChange={this.props.get}>
-                    <thead style={{border:" 1px solid black",background:"gray"}}>
+            <table style={{ background: "pink", border: " 1px solid black" }} >
+                <thead style={{ border: " 1px solid black", background: "gray" }}>
                     <tr>
-                    <th>First Name</th>
-                    <th>Parent Name</th>
-                    <th>Last Name</th>
-                    <th>ID Number</th>
-                    <th>Subject</th>
-                    <th>City</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Date Of Birth </th>
+                        <th>First Name</th>
+                        <th>Parent Name</th>
+                        <th>Last Name</th>
+                        <th>ID Number</th>
+                        <th>Subject</th>
+                        <th>City</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Date Of Birth </th>
 
 
                     </tr>
-                    </thead>
+                </thead>
 
-                    <tbody>
+                <tbody>
                     {
-                    this.state.data.map(item=>
-                    <tr key={item.id3}>
-                        <td>{item.fname}</td>
-                        <td>{item.mname}</td>
-                        <td>{item.lname}</td>
-                        <td>{item.id}</td>
-                        <td>{item.subject}</td>
-                        <td>{item.city}</td>
-                        <td>{item.phone}</td>
-                        <td>{item.address}</td>
-                        <td>{item.DateBirth}</td>
-                    </tr>
-                    )
+                       
+                        this.state.data.map(item =>{
+                            if(item.id!=0){
+                            <tr key={item.id3}>
+                                <td>{item.fname}</td>
+                                <td>{item.mname}</td>
+                                <td>{item.lname}</td>
+                                <td>{item.id}</td>
+                                <td>{item.subject}</td>
+                                <td>{item.city}</td>
+                                <td>{item.phone}</td>
+                                <td>{item.address}</td>
+                                <td>{item.DateBirth}</td>
+                              
+                            </tr>
+                            }
+                        }
+                        )
                     }
-                    </tbody>
+                    
+                </tbody>
 
-                </table>
-            </div>
+            </table>
+        </div>
 
     }
-
-
-
     render() {
-
         const contents = this.state.data.map(item => {
             //change the title and location key based on your API
-            return(<tr key={item.id}>
+            return (<tr key={item.id}>
 
-            <tr>
-               <td>{item.fname}</td>
-                <td>{item.mname}</td>
-                <td>{item.lname}</td>
-                <td>{item.id}</td>
-                <td>{item.subject}</td>
-                <td>{item.city}</td>
-                <td>{item.phone}</td>
-                <td>{item.address}</td>
-                <td>{item.DateBrith}</td>
+                <tr>
+                    <td>{item.fname}</td>
+                    <td>{item.mname}</td>
+                    <td>{item.lname}</td>
+                    <td>{item.id}</td>
+                    <td>{item.subject}</td>
+                    <td>{item.city}</td>
+                    <td>{item.phone}</td>
+                    <td>{item.address}</td>
+                    <td>{item.DateBrith}</td>
                 </tr>
             </tr>)
         })
         return (
             <div className="Table">
-                <table style={{background:"pink",border:" 1px solid black"}} onChange={this.props.get}>
-                    <thead style={{border:" 1px solid black",background:"gray"}}>
-                    <tr>
-                    <th>First Name</th>
-                    <th>Parent Name</th>
-                    <th>Last Name</th>
-                    <th>ID Number</th>
-                    <th>Subject</th>
-                    <th>City</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Date Of Birth </th>
-
-
-                    </tr>
+                <table style={{ border: " 1px solid black" ,align:"center"}} onChange={this.props.get}>
+                    <thead style={{ border: " 1px solid black", background: "#555555"}}>
+                        <tr style={{ border: " 1px solid black"}}>
+                            <th>First Name</th>
+                            <th>Parent Name</th>
+                            <th>Last Name</th>
+                            <th>ID Number</th>
+                            <th>Subject</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Date Of Birth </th>
+                        </tr>
                     </thead>
-
+                    
                     <tbody>
-                    {
-                    this.state.data.map(item=>
-                    <tr key={item.id2}>
-                        <td>{item.fname}</td>
-                        <td>{item.mname}</td>
-                        <td>{item.lname}</td>
-                        <td>{item.id}</td>
-                        <td>{item.subject}</td>
-                        <td>{item.city}</td>
-                        <td>{item.phone}</td>
-                        <td>{item.address}</td>
-                        <td>{item.DateBirth}</td>
-                    </tr>
-                    )
-                    }
+                        {
+                            this.state.data.map(item =>
+                               
+                                <tr key={item.id3}>
+                                    <td>{item.fname}</td>
+                                    <td>{item.mname}</td>
+                                    <td>{item.lname}</td>
+                                    <td>{item.id}</td>
+                                    <td>{item.subject}</td>
+                                    <td>{item.city}</td>
+                                    <td>{item.phone}</td>
+                                    <td>{item.address}</td>
+                                    <td>{item.DateBirth}</td>
+                                </tr>
+                            )
+                            
+                        }
+                        
                     </tbody>
-
+                    
                 </table>
             </div>
-            
-                   
-            
         );
     }
 }
-
-
-
-
 
 export default Build
 
@@ -202,7 +192,7 @@ export default Build
   //  <tbody>
    //     {contents}
  //   </tbody>
-    
+
 //</table>
 
 //</div>

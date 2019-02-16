@@ -32,7 +32,7 @@ if ($conn->connect_error) {
 $payload = file_get_contents('php://input');
 $input = json_decode($payload, TRUE);
 
-        $first_name =  $input['name'];
+        $first_name =  $input['fname'];
         $mid_name=$input['mname'];
         $lname=$input['lname'];
         $studentid = $input['id_st'];

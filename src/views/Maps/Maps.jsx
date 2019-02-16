@@ -122,7 +122,7 @@ class EditCriteria extends React.Component {
 
 
                 <GridContainer>
-                    <GridItem xs={12} sm={12} md={6}>
+                    <GridItem xs={12} sm={12} md={4}>
 
                         <Card>
                             <CardHeader color="warning">
@@ -145,7 +145,7 @@ class EditCriteria extends React.Component {
 
                     </GridItem>
                     <form  action="addClass.php" onSubmit={this.handleSubmit2} >
-                        <GridItem xs={12} sm={12} md={6}>
+                        <GridItem xs={12} sm={12} md={4}>
                             <Card>
                                 <CardHeader color="warning">
                                     <h4 className={classes.cardTitleWhite}>Add Classes</h4>
@@ -168,9 +168,9 @@ class EditCriteria extends React.Component {
                     </form>
 
 
-
+                        
                     <form action="point.php" onSubmit={this.handleSubmit}>
-                        <GridItem xs={12} sm={12} md={12}>
+                        <GridItem xs={12} sm={12} md={6}>
                             <Card>
 
                                 <CardHeader color="warning">

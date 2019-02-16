@@ -9,15 +9,21 @@ $link = mysqli_connect("localhost", "root", "", "project_new");
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-$payload = file_get_contents('php://output');
+$payload = file_get_contents('php://input');
 $input = json_decode($payload, true);
 // Attempt select query execution
-$sql = "SELECT * FROM teacher";
-$myArray = array();
-if ($result = $link->query($sql)) {
+$search=$input['search'];
 
+$sql = "SELECT * FROM teacher where id='$search'";
+
+$myArray = array();
+
+if ($result = $link->query($sql)) {
+   
     while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-            $myArray[] = $row;
+        
+        $myArray[] = $row;    
+        
     }
     echo json_encode($myArray);
 }

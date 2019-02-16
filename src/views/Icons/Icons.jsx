@@ -198,7 +198,7 @@ import Table from "components/Table/Table.jsx";
 import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx";
 
 import Build from "views/Icons/Table.jsx";
-
+import SimpleTable from "views/Icons/Tables.jsx"
 
 const style = {
     typo: {
@@ -279,15 +279,8 @@ function getData(url = ``, data = {}) {
         referrer: "no-referrer", // no-referrer, *client
         //body: JSON.stringify(data), // body data type must match "Content-Type" header
     })
-        .then(response => response.text()); // parses response to JSON
+        .then(response => response.json()); // parses response to JSON
 }
-
-
-
-
-
-
-
 
 
 //function Icons(props) {
@@ -296,14 +289,16 @@ class Icons extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            flag: false,
+        };
         this.updateInput = this.updateInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmit3 = this.handleSubmit3.bind(this);
         this.handleSubmit4 = this.handleSubmit4.bind(this);
         this.handleSubmit5 = this.handleSubmit5.bind(this);
-        this.contantaa=this.contantaa.bind(this);
-
+        this.contantaa = this.contantaa.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
     }
 
@@ -319,8 +314,8 @@ class Icons extends React.Component {
       });
   }
   */
- 
-   
+
+
 
     updateInput = (event) => {
         let state = {};
@@ -337,6 +332,7 @@ class Icons extends React.Component {
         postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/aa.php`, this.state)
             .then(data => console.log(JSON.stringify(data)))
             .catch(error => console.error(error));
+        event.target.reset();
     }
 
     handleSubmit3 = (event) => {
@@ -364,15 +360,51 @@ class Icons extends React.Component {
         getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`, this.state)
             .then(data => console.log(JSON.stringify(data)))
             .catch(error => console.error(error));
-        <Build />
+
 
     }
-    contantaa =(event)=>{
+    contantaa = (event) => {
         event.preventDefault();
         console.log(this.state);
-        
 
-    
+    }
+
+    componentDidMount() {
+        var th = this;
+        //this.serverRequest = axios.get(this.props.source)
+        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`)
+            .then(function (event) {
+                th.setState({
+                    data: event//.data
+                });
+            })
+    }
+    Search() {
+        return { flag: false };
+    }
+    onClick(e) {
+        e.preventDefault();
+        this.setState({ flag: true });
+    }
+    onClick_handel() {
+        this.setState({ flag: true });
+        return (
+            <div>
+                {this.state.flag ? <Build /> : null}
+            </div>
+        );
+    }
+    onSubmit() {
+        postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`, this.state)
+        .then(data => console.log(JSON.stringify(data)))
+        .catch(error => console.error(error));
+        return (
+            <div>
+
+                
+                {this.state.flag ? <Build /> : <div></div>}
+            </div>
+        );
     }
 
 
@@ -380,7 +412,8 @@ class Icons extends React.Component {
 
     render() {
         // var props;
-        var { isLoad, items } = this.state;
+
+
 
         const { classes } = this.props;
         const styleInput = {
@@ -418,78 +451,11 @@ class Icons extends React.Component {
                                                         </CardHeader>
                                                         <CardBody>
                                                             <GridContainer>
-
                                                                 <InputForm inputType="text" inputKey="fname" inputLabel="Teacher First Name:" updateInput={this.updateInput} />
-
                                                                 <InputForm inputType="text" inputKey="mname" inputLabel="Teacher Mid  Name:" updateInput={this.updateInput} />
-
                                                                 <InputForm inputType="text" inputKey="lname" inputLabel="Teacher Last Name:" updateInput={this.updateInput} />
-
                                                                 <InputForm inputType="number" inputKey="id_t" inputLabel="Teacher ID:" updateInput={this.updateInput} />
-
-
-
-                                                                {/*}
-                                                                <div style={{ display: 'flex', width: '100%' }}>
-                                                                    <br />
-                                                                    <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                                                                        <InputLabel style={{ width: "50%", color: "#000", alignContent: "Center", textAlign: "center" }}> Section: </InputLabel>
-                                                                    </GridItem>
-                                                                    <GridItem xs={12} sm={6} md={12}>
-                                                                      
-                                                                <input  type="checkbox"  inputKey="s1"  onChange={this.props.updateInput} />5th level
-                                                                <input  type="checkbox"  inputKey="s2"  onChange={this.props.updateInput} />6th level 
-                                                                <input  type="checkbox"  inputKey="s3"  onChange={this.props.updateInput} />7th level <br/>
-                                                                <input  type="checkbox"  inputKey="s4"  onChange={this.props.updateInput} />8th level 
-                                                                <input  type="checkbox"  inputKey="s5"  onChange={this.props.updateInput} />9th level 
-                                                                <input  type="checkbox"  inputKey="s6"  onChange={this.props.updateInput} />10th level<br/>
-                                                                
-                                                                    </GridItem>
-
-                                                                </div>
-                                                                */}
-
                                                                 <InputForm inputType="text" inputKey="sub" inputLabel="Subject : " updateInput={this.updateInput} />
-
-
-
-
-                                                                {/*}
-                                                                <div style={{ display: 'flex', width: '100%' }}>
-                                                                    <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                                                                        <InputLabel style={{ width: "50%", color: "#000", alignContent: "Center", textAlign: "center" }}> class ID: </InputLabel>
-                                                                    </GridItem>
-
-
-                                                                    <GridItem xs={12} sm={6} md={12}>
-                                                                      
-                                                                <input  type="checkbox"  inputKey="s5A"  onChange={this.props.updateInput} />class5A
-                                                                <input  type="checkbox"  inputKey="s5B"  onChange={this.props.updateInput} />class5B
-                                                                <input  type="checkbox"  inputKey="s5C"  onChange={this.props.updateInput} />class5C
-                                                                <input  type="checkbox"  inputKey="s6A"  onChange={this.props.updateInput} />class6A 
-                                                                <input  type="checkbox"  inputKey="s6B"  onChange={this.props.updateInput} />class6B <br/>
-                                                                <input  type="checkbox"  inputKey="s6C"  onChange={this.props.updateInput} />class6C
-                                                                <input  type="checkbox"  inputKey="s7A"  onChange={this.props.updateInput} />class7A 
-                                                                <input  type="checkbox"  inputKey="s7B"  onChange={this.props.updateInput} />class7B
-                                                                <input  type="checkbox"  inputKey="s7C"  onChange={this.props.updateInput} />class7C
-                                                                <input  type="checkbox"  inputKey="s8A"  onChange={this.props.updateInput} />class8A<br/>
-                                                                <input  type="checkbox"  inputKey="s8B"  onChange={this.props.updateInput} />class8B
-                                                                <input  type="checkbox"  inputKey="s8C"  onChange={this.props.updateInput} />class8C
-                                                                <input  type="checkbox"  inputKey="s9A"  onChange={this.props.updateInput} />class9A
-                                                                <input  type="checkbox"  inputKey="s9B"  onChange={this.props.updateInput} />class9B
-                                                                <input  type="checkbox"  inputKey="s9C"  onChange={this.props.updateInput} />class9C<br/>
-                                                                <input  type="checkbox"  inputKey="s10A"  onChange={this.props.updateInput} />class9A 
-                                                                <input  type="checkbox"  inputKey="s10B"  onChange={this.props.updateInput} />class9B 
-                                                                <input  type="checkbox"  inputKey="s10C"  onChange={this.props.updateInput} />class9C
-                                                            
-                                                                    </GridItem>
-
-                                                                </div>
-
-                                                                */}
-
-
-
                                                                 <InputForm inputType="text" inputKey="city" inputLabel="City :" updateInput={this.updateInput} />
                                                                 <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" updateInput={this.updateInput} />
                                                                 <InputForm inputType="text" inputKey="address" inputLabel="Address : " updateInput={this.updateInput} />
@@ -507,7 +473,7 @@ class Icons extends React.Component {
 
 
                                                         <CardBody>
-                                                            
+
                                                             <Table
                                                                 tableHeaderColor="danger"
                                                                 tableHead={["Class Level", "Section"]}
@@ -517,7 +483,7 @@ class Icons extends React.Component {
                                                                     ["3", "Sage Rodriguez"],
                                                                     ["4", "Philip Chaney"]
                                                                 ]}
-                                                            
+
 
                                                             />
                                                         </CardBody>
@@ -569,7 +535,8 @@ class Icons extends React.Component {
 
 
                                     )
-                                }, {
+                                },
+                                {
                                     tabName: "Delete Teacher",
                                     tabIcon: Accessibility,
                                     tabContent: (
@@ -610,7 +577,7 @@ class Icons extends React.Component {
                                     tabName: "Search",
                                     tabIcon: Code,
                                     tabContent: (
-                                        <form action="search.php" onSubmit={this.handleSubmit5}>
+                                        <form action="search.php" onSubmit={this.onSubmit}>
                                             <GridContainer>
                                                 <GridItem xs={12} sm={12} md={12}>
                                                     <Card>
@@ -622,29 +589,14 @@ class Icons extends React.Component {
                                                         <CardBody>
                                                             <div className={classes.searchWrapper} style={{ textAlign: "center" }} >
                                                                 <input style={{ width: "50%", color: "#000", margin: "3px 0", height: "40px", border: "1px solid #ccc", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", borderTopLeftRadius: "10px" }}
-                                                                    type="text" placeholder="Search" name="search" />
-                                                                <Button color="white" justIcon round name="search" type="submit" value="search"  onChange={this.updateInput}
-                                                                //onClick={this.toggleHidden.bind(this)}
-                                                                >
-                                                                    <Search onSubmit={this.handleSubmit5}/>
-
-                                                                </Button>
+                                                                    type="text" placeholder="Search" name="search" onChange={this.updateInput}/>
+                                                                <Button justIcon round color="rose" type="submit" value="Search" onClick={this.onClick.bind(this)} >
+                                                                <Search onSubmit={this.onSubmit}/>
+                                                                    </Button>
+                                                                {this.onSubmit()}
                                                                 <CardBody>
-                                                                    {/*}
-                                                                    <Table action="search.php" onSubmit={this.handleSubmit5}
-                                                                        tableHeaderColor="danger"
-                                                                        tableHead={["Class Level", "Section"]}
-                                                                        tableData={[
-                                                                            ["wcho", "Dakota Rice"],
-                                                                            ["2", "Minerva Hooper"],
-                                                                            ["3", "Sage Rodriguez"],
-                                                                            ["4", "Philip Chaney"]
-                                                                        ]}
-                                                                    />
-                                                                    */}
-                                                                    
-                                                                    
-                                                                    <Build />
+
+
 
                                                                 </CardBody>
                                                             </div>
