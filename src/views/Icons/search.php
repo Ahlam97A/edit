@@ -14,7 +14,7 @@ $input = json_decode($payload, true);
 // Attempt select query execution
 $search=$input['search'];
 
-$sql = "SELECT * FROM teacher where id='$search'";
+$sql = "SELECT * FROM teacher";
 
 $myArray = array();
 

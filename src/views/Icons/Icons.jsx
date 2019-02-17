@@ -199,6 +199,8 @@ import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx
 
 import Build from "views/Icons/Table.jsx";
 import SimpleTable from "views/Icons/Tables.jsx"
+import EnhancedTable from "views/Icons/table_with_checkbox.jsx";
+import MyTable from "views/Icons/table_with_checkbox.jsx"
 
 const style = {
     typo: {
@@ -243,6 +245,7 @@ const styles = {
     fontFamily: "sans-serif",
     textAlign: "center"
 };
+
 
 function postData(url = ``, data = {}) {
     // Default options are marked with *
@@ -466,7 +469,7 @@ class Icons extends React.Component {
                                                         </CardBody>
                                                         <br />
                                                         <br />
-                                                        <CardHeader color="danger">
+                                                        <CardHeader color="rose">
                                                             <h4 className={classes.cardTitleWhite}>Show All classes</h4>
                                                             <p></p>
                                                         </CardHeader>
@@ -474,18 +477,8 @@ class Icons extends React.Component {
 
                                                         <CardBody>
 
-                                                            <Table
-                                                                tableHeaderColor="danger"
-                                                                tableHead={["Class Level", "Section"]}
-                                                                tableData={[
-                                                                    ["1", "Dakota Rice"],
-                                                                    ["2", "Minerva Hooper"],
-                                                                    ["3", "Sage Rodriguez"],
-                                                                    ["4", "Philip Chaney"]
-                                                                ]}
-
-
-                                                            />
+                                                            <MyTable/>
+                                                            
                                                         </CardBody>
                                                         <CardFooter>
                                                             <Button color="info" name="Add" type="submit" value="Add" >Add</Button>
