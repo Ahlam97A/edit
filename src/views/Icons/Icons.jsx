@@ -201,7 +201,7 @@ import Build from "views/Icons/Table.jsx";
 import SimpleTable from "views/Icons/Tables.jsx"
 import EnhancedTable from "views/Icons/table_with_checkbox.jsx";
 import MyTable from "views/Icons/table_with_checkbox.jsx"
-
+import KKTable from "views/Icons/b.jsx" 
 const style = {
     typo: {
         paddingLeft: "25%",
@@ -247,8 +247,9 @@ const styles = {
 };
 
 
-function postData(url = ``, data = {}) {
+function postData(url, data) {
     // Default options are marked with *
+  
     return fetch(url, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, cors, *same-origin
@@ -257,17 +258,20 @@ function postData(url = ``, data = {}) {
         headers: {
             "Content-Type": "application/json",
 
-            // "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/x-www-form-urlencoded",
         },
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
         body: JSON.stringify(data), // body data type must match "Content-Type" header
     })
-        .then(response => response.text()); // parses response to JSON
+        .then(response =>response.text());// parses response to JSON
 }
 
 function getData(url = ``, data = {}) {
+    if(data==undefined){console.log('ahlam');}
+    else{
     // Default options are marked with *
+    if(data!=" "){
     return fetch(url, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, cors, *same-origin
@@ -276,13 +280,17 @@ function getData(url = ``, data = {}) {
         headers: {
             "Content-Type": "application/json",
 
-            // "Content-Type": "application/x-www-form-urlencoded",
+             "Content-Type": "application/x-www-form-urlencoded",
         },
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
         //body: JSON.stringify(data), // body data type must match "Content-Type" header
     })
-        .then(response => response.json()); // parses response to JSON
+        .then(response =>{if(response!=' ') response.json()}) // parses response to JSON
+      
+      
+    }
+}
 }
 
 
@@ -324,6 +332,7 @@ class Icons extends React.Component {
         let state = {};
         state[event.target.name] = event.target.value;
         this.setState(state);
+        
     }
 
 
@@ -333,18 +342,18 @@ class Icons extends React.Component {
         //alert('Handle it on your own');
         console.log(this.state);
         postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/aa.php`, this.state)
-            .then(data => console.log(JSON.stringify(data)))
-            .catch(error => console.error(error));
-        event.target.reset();
+          .then(data => console.log(JSON.stringify(data)))
+          .catch(error => console.error(error));
+
     }
 
     handleSubmit3 = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         //alert('Handle it on your own');
         console.log(this.state);
         postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/delete2.php`, this.state)
-            .then(data => console.log(JSON.stringify(data)))
-            .catch(error => console.error(error));
+           
+        return false;
 
     }
     handleSubmit4 = (event) => {
@@ -376,6 +385,8 @@ class Icons extends React.Component {
         var th = this;
         //this.serverRequest = axios.get(this.props.source)
         getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`)
+        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/getclass.php`)
+
             .then(function (event) {
                 th.setState({
                     data: event//.data
@@ -389,14 +400,7 @@ class Icons extends React.Component {
         e.preventDefault();
         this.setState({ flag: true });
     }
-    onClick_handel() {
-        this.setState({ flag: true });
-        return (
-            <div>
-                {this.state.flag ? <Build /> : null}
-            </div>
-        );
-    }
+  
     onSubmit() {
         postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`, this.state)
         .then(data => console.log(JSON.stringify(data)))
@@ -409,8 +413,24 @@ class Icons extends React.Component {
             </div>
         );
     }
+    getTable(){
+        postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/getclass.php`, this.state)
+        .then(data => console.log(JSON.stringify(data)))
+        .catch(error => console.error(error));
+        return (
+            <div>
+                <Button  color="rose" type="submit" value="get" onClick={this.onClick.bind(this)} >
+                        <Search />
+                </Button>
 
+                
+                {this.state.flag ? <MyTable /> : <div></div>}
+            </div>
+        );
 
+    }
+
+    
 
 
     render() {
@@ -445,7 +465,7 @@ class Icons extends React.Component {
 
 
                                         <GridContainer >
-                                            <form action="aa.php" onSubmit={this.handleSubmit}>
+                                            <form action="aa.php" onSubmit={this.handleSubmit} onChange={this.updateInput}>
                                                 <GridItem xs={12} sm={10} md={10}>
                                                     <Card>
                                                         <CardHeader color="info">
@@ -454,30 +474,30 @@ class Icons extends React.Component {
                                                         </CardHeader>
                                                         <CardBody>
                                                             <GridContainer>
-                                                                <InputForm inputType="text" inputKey="fname" inputLabel="Teacher First Name:" updateInput={this.updateInput} />
-                                                                <InputForm inputType="text" inputKey="mname" inputLabel="Teacher Mid  Name:" updateInput={this.updateInput} />
-                                                                <InputForm inputType="text" inputKey="lname" inputLabel="Teacher Last Name:" updateInput={this.updateInput} />
-                                                                <InputForm inputType="number" inputKey="id_t" inputLabel="Teacher ID:" updateInput={this.updateInput} />
-                                                                <InputForm inputType="text" inputKey="sub" inputLabel="Subject : " updateInput={this.updateInput} />
-                                                                <InputForm inputType="text" inputKey="city" inputLabel="City :" updateInput={this.updateInput} />
-                                                                <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" updateInput={this.updateInput} />
-                                                                <InputForm inputType="text" inputKey="address" inputLabel="Address : " updateInput={this.updateInput} />
-                                                                <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " updateInput={this.updateInput} />
-
-
+                                                                <InputForm inputType="text" inputKey="fname" inputLabel="Teacher First Name:"  />
+                                                                <InputForm inputType="text" inputKey="mname" inputLabel="Teacher Mid  Name:"  />
+                                                                <InputForm inputType="text" inputKey="lname" inputLabel="Teacher Last Name:"  />
+                                                                <InputForm inputType="number" inputKey="id_t" inputLabel="Teacher ID:"  />
+                                                                <InputForm inputType="text" inputKey="sub" inputLabel="Subject : "  />
+                                                                <InputForm inputType="text" inputKey="city" inputLabel="City :"/>
+                                                                <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" />
+                                                                <InputForm inputType="text" inputKey="address" inputLabel="Address : "  />
+                                                                <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " />
+                                                                
+                                                                  
                                                             </GridContainer>
                                                         </CardBody>
                                                         <br />
                                                         <br />
-                                                        <CardHeader color="rose">
+                                                        <CardHeader color="primary">
                                                             <h4 className={classes.cardTitleWhite}>Show All classes</h4>
-                                                            <p></p>
+                                                            
                                                         </CardHeader>
 
-
+                                                        
                                                         <CardBody>
-
-                                                            <MyTable/>
+                                                        <h3 style={{color:"brown",align:"center"}}><b>Click To Show Avilable Classes</b></h3>   
+                                                        {this.getTable()}
                                                             
                                                         </CardBody>
                                                         <CardFooter>

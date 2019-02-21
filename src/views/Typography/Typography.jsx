@@ -1,6 +1,5 @@
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import TabContent from '@material-ui/core/Tab';
-import BugReport from "@material-ui/icons/BugReport";
+import TabList from '@material-ui/core/Tab';
 import DateRange from "@material-ui/icons/DateRange";
 import Accessibility from "@material-ui/icons/Accessibility";
 import AccessTime from "@material-ui/icons/AccessTime";
@@ -9,6 +8,8 @@ import Update from "@material-ui/icons/Update";
 import LocalOffer from "@material-ui/icons/LocalOffer";
 import TabLink from '@material-ui/core/Tab';
 import Cloud from "@material-ui/icons/Cloud";
+import BugReport from "@material-ui/icons/BugReport";
+import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import Search from '@material-ui/icons/Search';
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputLabel from '@material-ui/core/InputLabel';
@@ -17,37 +18,37 @@ import Store from "@material-ui/icons/Store";
 import AppBar from '@material-ui/core/AppBar';
 import Code from "@material-ui/icons/Code";
 import TabPanel from '@material-ui/core/Tab';
-import TabList from '@material-ui/core/Tab';
 
 import React from "react";
 
 import Example from "ahlam.jsx";
 
-import CardBody from "components/Card/CardBody.jsx";
-import Info from "components/Typography/Info.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
+
+import Build from "views/Typography/tablee.jsx";
 
 import { bugs, website, server } from "variables/general.jsx";
 
-import GridItem from "components/Grid/GridItem.jsx";
+import Card from "components/Card/Card.jsx";
 import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
-import Card from "components/Card/Card.jsx";
+import Muted from "components/Typography/Muted.jsx";
+import CardBody from "components/Card/CardBody.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
+import Success from "components/Typography/Success.jsx";
 
 import InputForm from "views/Typography/InputForm.jsx";
 
+import Info from "components/Typography/Info.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import Muted from "components/Typography/Muted.jsx";
 import Quote from "components/Typography/Quote.jsx";
 import Danger from "components/Typography/Danger.jsx";
 import Warning from "components/Typography/Warning.jsx";
-import Success from "components/Typography/Success.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Primary from "components/Typography/Primary.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-import Build from "views/Typography/tablee.jsx";
 
 const style = {
   typo: {
@@ -93,7 +94,7 @@ const styles = {
   textAlign: "center"
 };
 
-function postData(url = ``, data = {}) {
+function postData(url, data ) {
   // Default options are marked with *
   return fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -102,7 +103,7 @@ function postData(url = ``, data = {}) {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json",
-      // "Content-Type": "application/x-www-form-urlencoded",
+       "Content-Type": "application/x-www-form-urlencoded",
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
@@ -234,7 +235,7 @@ class TypographyPage extends React.Component {
                   tabName: "Add Students",
                   tabIcon: Accessibility,
                   tabContent: (
-                    <form action="a.php" onSubmit={this.handleSubmit}>
+                    <form action="a.php" onSubmit={this.handleSubmit} onChange={this.updateInput}>
                       <GridItem xs={12} sm={12} md={10}>
                         <Card>
                           <CardHeader color="warning">
@@ -244,24 +245,24 @@ class TypographyPage extends React.Component {
                           <CardBody>
                             <GridContainer>
 
-                              <InputForm inputType="text" inputKey="fname" inputLabel="Student First Name:" updateInput={this.updateInput} />
-                              <InputForm inputType="text" inputKey="mname" inputLabel="Parent Name:" updateInput={this.updateInput} />
-                              <InputForm inputType="text" inputKey="lname" inputLabel="Student Last Name:" updateInput={this.updateInput} />
+                              <InputForm inputType="text" inputKey="fname" inputLabel="Student First Name:"    />
+                              <InputForm inputType="text" inputKey="mname" inputLabel="Parent Name:"   />
+                              <InputForm inputType="text" inputKey="lname" inputLabel="Student Last Name:"  />
 
 
 
-                              <InputForm inputType="number" inputKey="id_st" inputLabel="Student ID:" updateInput={this.updateInput} />
+                              <InputForm inputType="number" inputKey="id_st" inputLabel="Student ID:"   />
 
-                              <InputForm inputType="number" inputKey="id" inputLabel="class ID:" updateInput={this.updateInput} />
+                              <InputForm inputType="text" inputKey="id" inputLabel="class ID:"  />
 
-                              <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" updateInput={this.updateInput} />
+                              <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :"  />
 
 
-                              <InputForm inputType="number" inputKey="p_id" inputLabel="Parent ID : " updateInput={this.updateInput} />
+                              <InputForm inputType="number" inputKey="p_id" inputLabel="Parent ID : "   />
 
-                              <InputForm inputType="text" inputKey="address" inputLabel="Address : " updateInput={this.updateInput} />
-                              <InputForm inputType="text" inputKey="city" inputLabel="City : " updateInput={this.updateInput} />
-                              <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " updateInput={this.updateInput} />
+                              <InputForm inputType="text" inputKey="address" inputLabel="Address : " />
+                              <InputForm inputType="text" inputKey="city" inputLabel="City : " />
+                              <InputForm inputType="number" inputKey="phone" inputLabel="Phone : "   />
 
                             </GridContainer>
                           </CardBody>

@@ -172,7 +172,10 @@ class Build extends Component {
                                     <td>{item.address}</td>
                                     <td>{item.DateBirth}</td>
                                 </tr>
+                               
+                            
                             )
+                            
                             
                         }
                         

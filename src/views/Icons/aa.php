@@ -1,9 +1,9 @@
 
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE, PUT');
+//header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE, PUT');
 header('Access-Control-Allow-Headers: token, Content-Type');
-header('Access-Control-Expose-Headers: *');
+
 
 $db = new mysqli("localhost", "root", "", "project_new");
 if (!$db) die("database connection error");
@@ -29,7 +29,7 @@ $date = $input['DateofBirth'];
 $subject = $input['sub'];
 $address = $input['address'];
 $phone = $input['phone'];
- 
+//$myArray = array('a'=>$input[phone]);
 // Attempt insert query execution
 $sql = "INSERT INTO teacher(fname,mname,lname, id,subject,city,phone ,address,DateBirth) VALUES ('$first_name','$Mid_name','$Last_name','$teacherid','$subject','$city','$phone','$address','$date')";
 echo $sql;

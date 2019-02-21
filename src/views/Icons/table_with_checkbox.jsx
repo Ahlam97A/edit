@@ -42,15 +42,16 @@ const TableRow = ({ selected, id, name, handleSelect }) => {
     console.log(this.state)
     return (
         <tr>
-            <td>
+            <td  style={{backgroundSize:"14px",color:"pink"}}>
                 <input
                     name={id}
                     type="checkbox"
                     checked={selected}
                     onChange={handleSelect}
+                    
                 />
             </td>
-            <td>{id}</td>
+            <td style={{color:"#55555",fontSize:"25 px"}}>{id}</td>
             <td>{name}</td>
         </tr>
     );
@@ -106,7 +107,8 @@ export default class MyTable extends React.Component {
                 <thead>
                     <tr>
                         <th />
-                        <th style={{color:"blue"}}>Class Level</th>
+                        <th style={{color:"blue"}}>
+                        <button>Class Level</button></th>
                         <th>Section</th>
                     </tr>
                 </thead>
