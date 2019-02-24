@@ -39,7 +39,7 @@ import CardIcon from "components/Card/CardIcon.jsx";
 import Success from "components/Typography/Success.jsx";
 
 import InputForm from "views/Typography/InputForm.jsx";
-
+import axios from 'axios';
 import Info from "components/Typography/Info.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import Quote from "components/Typography/Quote.jsx";
@@ -49,7 +49,8 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import Primary from "components/Typography/Primary.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-
+import FileInput from "views/Typography/fileReader.jsx"
+import File from "views/Typography/file.jsx"
 const style = {
   typo: {
     paddingLeft: "25%",
@@ -94,7 +95,7 @@ const styles = {
   textAlign: "center"
 };
 
-function postData(url, data ) {
+function postData(url, data) {
   // Default options are marked with *
   return fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -103,7 +104,7 @@ function postData(url, data ) {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json",
-       "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
@@ -122,7 +123,7 @@ function getData(url = ``, data = {}) {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json",
-      // "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
@@ -151,7 +152,12 @@ class TypographyPage extends React.Component {
     state[event.target.name] = event.target.value;
     this.setState(state);
   }
-
+  handleselectedFile = event => {
+    this.setState({
+      selectedFile: event.target.files[0],
+      loaded: 0,
+    })
+  }
   handleSubmit(event) {
     event.preventDefault();
     //alert('Handle it on your own');
@@ -185,7 +191,7 @@ class TypographyPage extends React.Component {
     event.preventDefault();
     //alert('Handle it on your own');
     console.log(this.state);
-    postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/upload.php`, this.state)
+    postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/upload_csvfile.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
   }
@@ -202,9 +208,29 @@ class TypographyPage extends React.Component {
   }
 
   updateInput_upload(event) {
-    let state = {};
-    state[event.target.name] = event.target.value;
-    this.setState(state);
+    //let state = {};
+    //state[event.target.name] = event.target.value;
+    this.readFile(event);
+    event.target.value = null;
+
+  }
+
+  handleUpload = () => {
+    const data = new FormData()
+    data.append('file', this.state.selectedFile, this.state.selectedFile.name)
+
+
+    postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/upload_csvfile.php`, {
+      onUploadProgress: ProgressEvent => {
+        this.setState({
+          loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
+        })
+      },
+    })
+      .then(res => {
+        console.log(res.statusText)
+      })
+
   }
 
   render() {
@@ -245,24 +271,16 @@ class TypographyPage extends React.Component {
                           <CardBody>
                             <GridContainer>
 
-                              <InputForm inputType="text" inputKey="fname" inputLabel="Student First Name:"    />
-                              <InputForm inputType="text" inputKey="mname" inputLabel="Parent Name:"   />
-                              <InputForm inputType="text" inputKey="lname" inputLabel="Student Last Name:"  />
-
-
-
-                              <InputForm inputType="number" inputKey="id_st" inputLabel="Student ID:"   />
-
-                              <InputForm inputType="text" inputKey="id" inputLabel="class ID:"  />
-
-                              <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :"  />
-
-
-                              <InputForm inputType="number" inputKey="p_id" inputLabel="Parent ID : "   />
-
+                              <InputForm inputType="text" inputKey="fname" inputLabel="Student First Name:" />
+                              <InputForm inputType="text" inputKey="mname" inputLabel="Parent Name:" />
+                              <InputForm inputType="text" inputKey="lname" inputLabel="Student Last Name:" />
+                              <InputForm inputType="number" inputKey="id_st" inputLabel="Student ID:" />
+                              <InputForm inputType="text" inputKey="id" inputLabel="class ID:" />
+                              <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" />
+                              <InputForm inputType="number" inputKey="p_id" inputLabel="Parent ID : " />
                               <InputForm inputType="text" inputKey="address" inputLabel="Address : " />
                               <InputForm inputType="text" inputKey="city" inputLabel="City : " />
-                              <InputForm inputType="number" inputKey="phone" inputLabel="Phone : "   />
+                              <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " />
 
                             </GridContainer>
                           </CardBody>
@@ -272,9 +290,6 @@ class TypographyPage extends React.Component {
                         </Card>
                       </GridItem>
                     </form>
-
-
-
                   )
 
                 },
@@ -283,41 +298,11 @@ class TypographyPage extends React.Component {
                   tabIcon: LibraryBooks,
                   tabContent: (
                     <center>
+                      
                       <GridContainer>
-                        <form action="a.php" onSubmit={this.handleSubmit_upload}>
-                          <GridItem xs={12} sm={12} md={12}>
-                            <Card>
-                              <CardHeader color="info">
-                                <h4 className={this.cardTitleWhite}>Add List Of Students</h4>
-                                <p className={this.cardCategoryWhite}></p>
-                              </CardHeader>
-                              <CardBody>
-                                <GridContainer>
-                                  <div style={{ alignContent: "center", alignItems: "center" }}>
-                                    <h4 color="primary"><a>To be simple for you to add List of Students , you should add A file of .csv extension (FileName.csv).  The file must be  contain Specific Information about the Student.</a></h4>
-                                  </div>
+                     
+                        <FileInput />
 
-                                  <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                                    <InputLabel style={{ color: "#000", alignContent: "Center" }}>Select List Of Students: </InputLabel>
-                                  </GridItem>
-                                  <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                                    <input color="primary" type="file" name="fileToUpload" id="fileToUpload" onChange={this.updateInput_upload}></input>
-                                  </GridItem>
-
-
-
-
-                                </GridContainer>
-                              </CardBody>
-                              <CardFooter>
-                                <Button color="primary" name="Add" type="submit" value="Add">Add</Button>
-                                <Button color="primary">View</Button>
-
-
-                              </CardFooter>
-                            </Card>
-                          </GridItem>
-                        </form>
                       </GridContainer>
                     </center>
                   )

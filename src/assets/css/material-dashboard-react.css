@@ -50,7 +50,7 @@
 }
 
 .ct-label {
-    fill: rgba(206, 201, 201, 0.89);
+    fill: rgba(255, 249, 249, 0.89);
     line-height: 1;
 }
 html * {
@@ -59,7 +59,7 @@ html * {
 }
 body {
     background-color: rgb(14, 12, 12);
-    color: rgb(35, 41, 48);
+    color: rgb(223, 228, 233);
     margin: 0;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-weight: 300;
@@ -107,7 +107,7 @@ h6 {
 }
 
 body {
-    background-color: rgb(236, 175, 213);
+    background-color: rgb(19, 18, 19);
     color: rgb(22, 25, 29);
     
 }
@@ -123,12 +123,12 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: #9c27b0;
+    color: #ebd9ee;
     text-decoration: none;
 }
 
 a:hover, a:focus {
-    color: #89229b;
+    color: #ac7075;
     text-decoration: none;
 }
 
@@ -170,7 +170,7 @@ output {
 label {
     font-size: 14px;
     line-height: 1.42857;
-    color: #AAAAAA;
+    color: rgb(216, 216, 216);
     font-weight: 400;
 }
 

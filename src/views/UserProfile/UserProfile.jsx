@@ -227,7 +227,7 @@ const styles = {
   }
 };
 
-function postData(url = ``, data = {}) {
+function postData(url, data) {
   // Default options are marked with *
   return fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -236,7 +236,7 @@ function postData(url = ``, data = {}) {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json",
-      // "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
@@ -261,7 +261,7 @@ class UserProfile extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    
+
     console.log(this.state);
     postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/UserProfile/Edit.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
@@ -270,9 +270,9 @@ class UserProfile extends React.Component {
 
 
   }
-  
+
   render() {
-  
+
     const { classes } = this.props;
     const styleInput = {
       width: "100%",
@@ -289,63 +289,51 @@ class UserProfile extends React.Component {
       <div>
 
         <GridContainer>
-        <GridItem xs={12} sm={12} md={10}>
-                        <CustomTabs
-                          title="Principal:"
-                          headerColor="info"
-                          tabs={[
-                            {
-                              tabName: "My Profile",
-                              tabIcon: BugReport,
-                              tabContent: (
-                               
-          <form action="Edit.php" onSubmit={this.handleSubmit}>
           <GridItem xs={12} sm={12} md={10}>
-            <Card>
+            <CustomTabs
+              title="Principal:"
+              headerColor="info"
+              tabs={[
+                {
+                  tabName: "My Profile",
+                  tabIcon: BugReport,
+                  tabContent: (
 
-              <CardHeader color="info">
-                <h4 className={classes.cardTitleWhite}>Edit Profile</h4>
-                <h3 >Reset Your Password</h3>
-              </CardHeader>
-              
+                    <form action="Edit.php" onSubmit={this.handleSubmit}>
+                      <GridItem xs={12} sm={12} md={10}>
+                        <Card>
 
+                          <CardHeader color="info">
+                            <h4 className={classes.cardTitleWhite}>Edit Profile</h4>
+                            <h3 >Reset Your Password</h3>
+                          </CardHeader>
+                          <CardBody>
+                            <GridContainer>
+                              <GridContainer>
+                                <InputForm inputType="number" inputKey="id" inputLabel="User ID: " updateInput={this.updateInput} />
+                                <InputForm inputType="password" inputKey="pwd" inputLabel="Current Password : " updateInput={this.updateInput} />
+                                <InputForm inputType="password" inputKey="new_pwd" inputLabel="New Password : " updateInput={this.updateInput} />
+                                <InputForm inputType="password" inputKey="ConfirmPassword" inputLabel="Confirm Password : " updateInput={this.updateInput} />
+                                <InputForm inputType="text" inputKey="address" inputLabel="Personal Address : " updateInput={this.updateInput} />
+                                <InputForm inputType="text" inputKey="city" inputLabel="City : " updateInput={this.updateInput} />
+                                <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " updateInput={this.updateInput} />
+                              </GridContainer>
+                            </GridContainer>
+                          </CardBody>
 
-              <CardBody>
-                <GridContainer>
-                  <GridContainer>
+                          <CardFooter>
+                            <Button color="primary" name="UpdateProfile" type="submit" value="UpdateProfile">Update Profile</Button>
+                          </CardFooter>
 
-                  
-                    <InputForm inputType="number" inputKey="id" inputLabel="User ID: " updateInput={this.updateInput} />
-
-
-                    <InputForm inputType="password" inputKey="pwd" inputLabel="Current Password : " updateInput={this.updateInput} />
-                    <InputForm inputType="password" inputKey="new_pwd" inputLabel="New Password : " updateInput={this.updateInput} />
-                    <InputForm inputType="password" inputKey="ConfirmPassword" inputLabel="Confirm Password : " updateInput={this.updateInput} />
-                    <InputForm inputType="text" inputKey="address" inputLabel="Personal Address : " updateInput={this.updateInput} />
-                    <InputForm inputType="text" inputKey="city" inputLabel="City : " updateInput={this.updateInput} />
-
-                    <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " updateInput={this.updateInput} />
-
-
-                  </GridContainer>
-                </GridContainer>
-              </CardBody>
-
-              <CardFooter>
-                <Button color="primary" name="UpdateProfile" type="submit" value="UpdateProfile">Update Profile</Button>
-              </CardFooter>
-
-            </Card>
-          </GridItem>
-
-        </form>
-                              )
-                            },
-
-
-                          ]}
-                        />
+                        </Card>
                       </GridItem>
+
+                    </form>
+                  )
+                },
+              ]}
+            />
+          </GridItem>
 
 
         </GridContainer>
@@ -364,10 +352,6 @@ class UserProfile extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
-
-
-
-
       </div>
     );
   }

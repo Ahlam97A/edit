@@ -7,7 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 //import TableRow from 'views/Icons/TableRow.jsx';
 //const ReactTable = window.ReactTable.default;
 
-function getData(url = ``, data = {}) {
+function getData(url , data ) {
     // Default options are marked with *
     return fetch(url, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -20,7 +20,7 @@ function getData(url = ``, data = {}) {
 
 
 
-            // "Content-Type": "application/x-www-form-urlencoded",
+             "Content-Type": "application/x-www-form-urlencoded",
         },
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
@@ -30,16 +30,9 @@ function getData(url = ``, data = {}) {
         .then(response => response.json());
 }
 
-
-
-
-
-//ReactDOM.render(<MyTable />, document.getElementById("root"));
-
-
 const TableRow = ({ selected, id, name, handleSelect }) => {
     console.log(`render TableRow :: ${id} :: ${name}`);
-    console.log(this.state)
+    //console.log(this.state)
     return (
         <tr>
             <td  style={{backgroundSize:"14px",color:"pink"}}>
@@ -60,12 +53,6 @@ const TableRow = ({ selected, id, name, handleSelect }) => {
 TableRow.defaultProps = {
     selected: false
 }
-const users = [
-    { id: 1, name: 'A' },
-    { id: 2, name: 'B' },
-    { id: 3, name: 'C' },
-    { id: 4, name: 'D' },
-];
 
 export default class MyTable extends React.Component {
     constructor() {
@@ -89,12 +76,7 @@ export default class MyTable extends React.Component {
                     });
                 }
             })
-
-
     }
-
-
-
     handleSelect = (e) => {
         const selected = this.state.selected;
         selected[e.target.name] = e.target.checked;
@@ -107,8 +89,8 @@ export default class MyTable extends React.Component {
                 <thead>
                     <tr>
                         <th />
-                        <th style={{color:"blue"}}>
-                        <button>Class Level</button></th>
+                        
+                        <th>Class Level</th>
                         <th>Section</th>
                     </tr>
                 </thead>

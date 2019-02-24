@@ -37,26 +37,36 @@ $phone = $input['phone'];
 
 $old_password=$input['pwd'];
 $new_password=$input['new_pwd'];
+$con_password=$input['ConfirmPassword'];
 
 
-$chg_pwd=mysqli_query($conn,"SELECT password FROM principal where id='$id'");
-$chg_pwd1=mysqli_fetch_array($chg_pwd);
-$data_pwd=$chg_pwd1['password'];
-if($data_pwd==$old_password){
-//if($new_password==$con_password){
-    if(1){
-$update_pwd=mysqli_query($conn,"update principal set password='$new_password' ,address='$add' ,phone='$phone' WHERE id='$id'");
+$result = mysqli_query($conn,"SELECT password FROM principal WHERE id='$id'");
 
-$change_pwd_error="Update Sucessfully !!!";
-    }
-else{
-$change_pwd_error="Your new and Retype Password is not match !!!";
+if(!$result)
+{
+echo "The username you entered does not exist";
 }
+
+
+else if($old_password!=  mysqli_fetch_assoc($result))
+{
+echo "You entered an incorrect password";
+}
+
+
+if($new_password==$con_password)
+$sql=mysqli_query($conn,"UPDATE principal SET password='$new_password', city='$city', address='$add' ,phone='$phone' where id='$id'");
+
+if($sql)
+{
+echo "Congratulations You have successfully changed your password";
 }
 else
 {
-$change_pwd_error="Your old password is wrong !!!";
-}
+echo "Passwords do not match";
+}  
+
+
 echo "done";
 /*
     
@@ -68,7 +78,8 @@ if (mysqli_query($conn, $update_pwd)) {
 
 
 */
-        
+
+
 ?>
 
        
