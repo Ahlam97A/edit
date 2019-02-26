@@ -27,6 +27,9 @@ import EnhancedTable from "views/Icons/table_with_checkbox.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 
 import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx";
+
+//import Controls from './Test';
+import FileInput from 'views/Icons/filereader';
 import MyTable from "views/Icons/table_with_checkbox.jsx"
 import ProductIndexTable from "views/Icons/Taps.jsx"
 const style = {
@@ -94,7 +97,7 @@ function postData(url, data) {
         .then(response => response.text());// parses response to JSON
 }
 
-function getData(url = ``, data = {}) {
+function getData(url=`` , data={} ) {
     if (data == undefined) { console.log('ahlam'); }
     else {
         // Default options are marked with *
@@ -322,7 +325,7 @@ class Icons extends React.Component {
                                                         </CardBody>
                                                         <br />
                                                         <br />
-
+                                                        <center>
                                                         <GridItem xs={12} sm={12} md={6}>
                                                             <CardHeader color="primary">
                                                                 <h4 className={classes.cardTitleWhite}> The Available Classes</h4>
@@ -331,11 +334,14 @@ class Icons extends React.Component {
 
 
                                                             <CardBody>
+                                                              
+                                                               {this.getTable()} 
+                                                                  { /*  <Controls/> */}
 
-                                                                {this.getTable()}
                                                                 <Button color="primary" name="Add" type="submit" value="Add" onClick={this.handleClick1}>Add additional Class</Button>
                                                             </CardBody>
                                                         </GridItem>
+                                                        </center>
                                                         <CardFooter>
                                                             <Button color="info" name="Add" type="submit" value="Add" >Add</Button>
                                                         </CardFooter>
@@ -351,39 +357,14 @@ class Icons extends React.Component {
                                     tabName: "Add List Of Teachers",
                                     tabIcon: LibraryBooks,
                                     tabContent: (
-
-                                        <GridContainer>
-                                            <GridItem xs={12} sm={12} md={10}>
-                                                <Card>
-                                                    <CardHeader color="info">
-                                                        <h4 className={classes.cardTitleWhite}>Add List Of  Teachers</h4>
-                                                    </CardHeader>
-                                                    <CardBody>
-                                                        <GridContainer>
-                                                            <div style={{ alignContent: "center", alignItems: "center" }}>
-                                                                <h4 color="primary"><a>To be simple for you to add List of Teachers , you should add A file of .csv extension (FileName.csv).  The file must be  contain Specific Information about the Teacher.</a></h4>
-                                                            </div>
-                                                            <GridItem xs={12} sm={6} md={12}>
-                                                                <inputLabel style={{ alignContent: "center", alignItems: "center", width: "50%", color: "#AAAAAA", alignContent: "Center" }}>Select List Of Teachers : </inputLabel>
-                                                            </GridItem>
-                                                            <GridItem xs={12} sm={6} md={12} >
-                                                                <input color="primary" type="file" name="fileToUpload" id="fileToUpload" tyle={{ alignContent: "center", alignItems: "center", width: "50%", color: "#AAAAAA", alignContent: "Center" }}></input>
-                                                            </GridItem>
-
-                                                        </GridContainer>
-                                                    </CardBody>
-                                                    <CardFooter>
-                                                        <Button color="info">Add</Button>
-                                                        <Button color="info">View</Button>
-                                                    </CardFooter>
-                                                </Card>
-                                            </GridItem>
-                                        </GridContainer>
-
-
-
-
+                                        <center>
+                                            <GridContainer>
+                                                  <FileInput/>
+                                            </GridContainer>
+                                        </center>
                                     )
+                                   
+                                   
                                 },
                                 {
                                     tabName: "Delete Teacher",
@@ -438,14 +419,14 @@ class Icons extends React.Component {
                                                         <CardBody>
                                                             <div className={classes.searchWrapper} style={{ textAlign: "center" }} >
                                                                 <input style={{ width: "50%", color: "#000", margin: "3px 0", height: "40px", border: "1px solid #ccc", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", borderTopLeftRadius: "10px" }}
-                                                                    type="text" placeholder="Search" name="search" onChange={this.updateInput} />
+                                                                    type="text" placeholder="id" key="id" name="search" onChange={this.updateInput} />
                                                                 <Button justIcon round color="rose" type="submit" value="Search" onClick={this.onClick.bind(this)} >
                                                                     <Search onSubmit={this.onSubmit} />
                                                                 </Button>
-                                                                {this.onSubmit()}
+                                                                
                                                                 <CardBody>
 
-
+                                                                {this.onSubmit()}
 
                                                                 </CardBody>
                                                             </div>

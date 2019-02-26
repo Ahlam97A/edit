@@ -337,7 +337,7 @@ class UserProfile extends React.Component {
 
 
         </GridContainer>
-
+            {/*}
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
             <Card profile>
@@ -352,6 +352,7 @@ class UserProfile extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
+            */}
       </div>
     );
   }

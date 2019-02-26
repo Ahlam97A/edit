@@ -10,24 +10,19 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password,"project_new");
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+    echo "<br>";
 }else{
-    echo "Connected successfully";
+  echo "Connected successfully";
+  echo "<br>";
 } 
 
 
 
-//$sql = "INSERT INTO student (name,id,classid,date) VALUES ('ahlam','123','545','17/2/17')";
-// Escape user inputs for security
-//if (isset($_REQUEST['Add'])) {
-   
- //if (isset($_REQUEST['name']) && isset($_REQUEST['id']) && isset($_REQUEST['id'])) 
-  //{
 
 $payload = file_get_contents('php://input');
 $input = json_decode($payload, TRUE);
@@ -36,32 +31,51 @@ $input = json_decode($payload, TRUE);
         $mid_name=$input['mname'];
         $lname=$input['lname'];
         $studentid = $input['id_st'];
+
+
+        $date = $input['DateofBirth'];
+        date_default_timezone_set('Europe/Warsaw');
+        $d_current = date("Y/m/d", time());
+        echo "current=".$d_current;
+        echo "<br>";
+        //$d2=date_create("1998-02-22");
+        //$d2_1= date_format($d2,"Y/m/d");
+        //echo $d2_1;
+        echo "<br>";
+        $diff = $d_current - $date;
+        echo "diff=".$diff;
+        
+      
+
+      // $_POST[$input['level']]=$diff;
+      
+     
+
+        $level=$input['level'];
+
         $id = $input['id'];
-        $date=$input['DateofBirth'];
         $p_id=$input['p_id'];
         $address=$input['address'];
         $phone=$input['phone'];
- 
+
+
+
+
+
 // Attempt insert query execution
-$sql = "INSERT INTO student(name,mname,lname, id,classid,date ,part_id,addresss,phone) VALUES ('$first_name','$mid_name' ,'$lname','$studentid', '$id' ,'$date','$p_id','$address','$phone')";
+$sql = "INSERT INTO student(name,mname,lname, id,level,classid,date ,part_id,addresss,phone) VALUES ('$first_name','$mid_name' ,'$lname','$studentid','$level', '$id' ,'$date','$p_id','$address','$phone')";
+echo "<br>";
 echo $sql;
 if(mysqli_query($conn, $sql)){
+    echo "<br>";
     echo "Records added successfully.";
+    echo "<br>";
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+    echo "<br>";
 }
  
 
 
-/*
-
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-$conn->close();
-
-*/
 ?>
+

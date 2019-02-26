@@ -1,10 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
-// core components
+
+import React from "react";
+
+import PropTypes from "prop-types";
+
 import footerStyle from "assets/jss/material-dashboard-react/components/footerStyle.jsx";
 
 function Footer({ ...props }) {
@@ -24,7 +25,7 @@ function Footer({ ...props }) {
             &copy; {1900 + new Date().getYear()}{" "}
             <a href="#" className={classes.a}>
              Student Behavior Tracking System
-            </a>, made with love for a better Behavior
+            , made with love for a better Behavior</a>
           </span>
         </p>
       </div>

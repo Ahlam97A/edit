@@ -31,12 +31,28 @@ $address = $input['address'];
 $phone = $input['phone'];
 //$myArray = array('a'=>$input[phone]);
 // Attempt insert query execution
-$sql = "INSERT INTO teacher(fname,mname,lname, id,subject,city,phone ,address,DateBirth) VALUES ('$first_name','$Mid_name','$Last_name','$teacherid','$subject','$city','$phone','$address','$date')";
-echo $sql;
-if (mysqli_query($conn, $sql)) {
-    echo "Records added successfully.";
-} else {
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-}
+//$checked_count = count($_POST["check"]);
+//echo "You have selected following ".$checked_count." option(s): <br/>";
+$check=$input['check'];
+
+
+
+   
+        echo "successfully uploaded!..";
+
+$query=("SELECT * FROM class");
+
+$result=mysqli_query($conn,$query);
+$row=mysqli_fetch_array($result);
+$level=$row['level'];
+$s=$row['id_class'];
+echo $level;
+echo $s;
+//mysqli_query($conn,"INSERT into teacher WHERE level='$level' and section='$s'");
+
+
+
+$sql = "INSERT INTO teacher(fname,mname,lname, id,subject,city,phone ,address,DateBirth,level,section) VALUES ('$first_name','$Mid_name','$Last_name','$teacherid','$subject','$city','$phone','$address','$date','$level','$s')";
+mysqli_query($conn,$sql);
 
 ?>

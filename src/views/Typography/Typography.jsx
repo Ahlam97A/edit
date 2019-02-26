@@ -50,7 +50,8 @@ import Primary from "components/Typography/Primary.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 import FileInput from "views/Typography/fileReader.jsx"
-import File from "views/Typography/file.jsx"
+import File from "views/Typography/file.jsx";
+import Table1 from "views/Typography/table.jsx";
 const style = {
   typo: {
     paddingLeft: "25%",
@@ -165,6 +166,7 @@ class TypographyPage extends React.Component {
     postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/a.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
+      event.target.reset();
   }
 
   handleSubmit3 = (event) => {
@@ -174,6 +176,7 @@ class TypographyPage extends React.Component {
     postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/delete.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
+      event.target.reset();
 
   }
   handleSubmit4 = (event) => {
@@ -183,7 +186,7 @@ class TypographyPage extends React.Component {
     postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/delete_all.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
-
+      event.target.reset();
   }
 
 
@@ -278,6 +281,7 @@ class TypographyPage extends React.Component {
                               <InputForm inputType="text" inputKey="id" inputLabel="class ID:" />
                               <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" />
                               <InputForm inputType="number" inputKey="p_id" inputLabel="Parent ID : " />
+                              <InputForm inputType="text" inputKey="level" inputLabel="Level : " />
                               <InputForm inputType="text" inputKey="address" inputLabel="Address : " />
                               <InputForm inputType="text" inputKey="city" inputLabel="City : " />
                               <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " />
@@ -370,7 +374,7 @@ class TypographyPage extends React.Component {
 
 
 
-                                  <Build />
+                                  <Table1 />
 
                                 </CardBody>
                               </div>
