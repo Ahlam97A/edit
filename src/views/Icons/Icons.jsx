@@ -287,7 +287,7 @@ class Icons extends React.Component {
         };
         return (
             <div style={{ alignContent: "Center" }}>
-                <GridContainer>
+                <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={10}>
                         <CustomTabs
                             title="Teachers:"

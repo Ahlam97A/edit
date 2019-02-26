@@ -253,7 +253,7 @@ class TypographyPage extends React.Component {
     return (
 
       <div style={{ alignContent: "Center" }}>
-        <GridContainer>
+        <GridContainer justify="center">
 
           <GridItem xs={12} sm={12} md={10}>
             <CustomTabs
@@ -265,14 +265,15 @@ class TypographyPage extends React.Component {
                   tabIcon: Accessibility,
                   tabContent: (
                     <form action="a.php" onSubmit={this.handleSubmit} onChange={this.updateInput}>
+                    <GridContainer justify="center">
                       <GridItem xs={12} sm={12} md={10}>
-                        <Card>
+                        <Card justify="center">
                           <CardHeader color="warning">
                             <h3 className={classes.cardCategoryWhite}>Student Page</h3>
                             <h4 className={classes.cardTitleWhite}>Add A Student </h4>
                           </CardHeader>
                           <CardBody>
-                            <GridContainer>
+                            <GridContainer justify="center">
 
                               <InputForm inputType="text" inputKey="fname" inputLabel="Student First Name:" />
                               <InputForm inputType="text" inputKey="mname" inputLabel="Parent Name:" />
@@ -293,6 +294,7 @@ class TypographyPage extends React.Component {
                           </CardFooter>
                         </Card>
                       </GridItem>
+                      </GridContainer>
                     </form>
                   )
 
@@ -303,7 +305,7 @@ class TypographyPage extends React.Component {
                   tabContent: (
                     <center>
                       
-                      <GridContainer>
+                      <GridContainer justify="center">
                      
                         <FileInput />
 
@@ -316,7 +318,7 @@ class TypographyPage extends React.Component {
                   tabName: "Delete",
                   tabIcon: Accessibility,
                   tabContent: (
-                    <GridContainer>
+                    <GridContainer justify="center">
                       <GridItem xs={12} sm={12} md={10}>
                         <Card>
                           <CardHeader color="primary">
@@ -324,7 +326,7 @@ class TypographyPage extends React.Component {
                             <p className={this.cardCategoryWhite}></p>
                           </CardHeader>
                           <CardBody>
-                            <GridContainer>
+                            <GridContainer justify="center">
 
                               <InputForm inputType="number" inputKey="id" inputLabel=" StudentID :" updateInput={this.updateInput} />
 

@@ -34,14 +34,10 @@ $phone = $input['phone'];
 //$checked_count = count($_POST["check"]);
 //echo "You have selected following ".$checked_count." option(s): <br/>";
 $check=$input['check'];
-
-
-
-   
-        echo "successfully uploaded!..";
+echo "successfully uploaded!..";
 
 $query=("SELECT * FROM class");
-
+/*
 $result=mysqli_query($conn,$query);
 $row=mysqli_fetch_array($result);
 $level=$row['level'];
@@ -49,10 +45,21 @@ $s=$row['id_class'];
 echo $level;
 echo $s;
 //mysqli_query($conn,"INSERT into teacher WHERE level='$level' and section='$s'");
-
-
-
+*/
 $sql = "INSERT INTO teacher(fname,mname,lname, id,subject,city,phone ,address,DateBirth,level,section) VALUES ('$first_name','$Mid_name','$Last_name','$teacherid','$subject','$city','$phone','$address','$date','$level','$s')";
-mysqli_query($conn,$sql);
+//mysqli_query($conn,$sql);
+
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+       $level= $row["level"];
+       $id_class= $row["id_class"];
+       $sql = "INSERT INTO teacher(fname,mname,lname, id,subject,city,phone ,address,DateBirth,level,section) VALUES ('$first_name','$Mid_name','$Last_name','$teacherid','$subject','$city','$phone','$address','$date','$level','$id_class')";
+       mysqli_query($conn,$sql);
+    }
+} 
+
 
 ?>

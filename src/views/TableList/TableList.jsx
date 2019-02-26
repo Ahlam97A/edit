@@ -1,14 +1,23 @@
-import React from "react";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// core components
-import GridItem from "components/Grid/GridItem.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import Table from "components/Table/Table.jsx";
-import Card from "components/Card/Card.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import CardBody from "components/Card/CardBody.jsx";
+import Code from "@material-ui/icons/Code";
+import Accessibility from "@material-ui/icons/Accessibility";
+import LibraryBooks from "@material-ui/icons/LibraryBooks";
+import Search from '@material-ui/icons/Search';
 
+import React from "react";
+
+import Card from "components/Card/Card.jsx";
+import Table from "components/Table/Table.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
+import CardBody from "components/Card/CardBody.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import Button from "components/CustomButtons/Button.jsx";
+import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
+
+import Build1 from "views/TableList/Table_c.jsx";
+import Build2 from "views/TableList/Table_s.jsx";
+import Build from "views/TableList/Table_t.jsx";
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -39,135 +48,143 @@ const styles = {
   }
 };
 
-function TableList(props) {
-  const { classes } = props;
-  return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>View Teachers</h4>
-            <p className={classes.cardCategoryWhite}>
-              Table Of All Teachers In the School
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["TeacherName", "Subject", "ClassesId", "Phone"]}
-              tableData={[
-                ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
-                ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
-                ["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
-                ["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
-                ["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
-                ["Mason Porter", "Chile", "Gloucester", "$78,615"]
+function getData(url, data) {
+  // Default options are marked with *
+  return fetch(url, {
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    // body: JSON.stringify(data), // body data type must match "Content-Type" header
+  })
+    .then(response => response.text()); // parses response to JSON
+}
+
+class TableList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
+
+  handleSubmit5 = (event) => {
+    event.preventDefault();
+    getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/TableList/get_t.php`, this.state)
+      .then(data => console.log(JSON.stringify(data)))
+      .catch(error => console.error(error));
+
+
+  }
+
+  handleSubmit6 = (event) => {
+    event.preventDefault();
+    getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/TableList/get_c.php`, this.state)
+      .then(data => console.log(JSON.stringify(data)))
+      .catch(error => console.error(error));
+
+
+  }
+  handleSubmit7 = (event) => {
+    event.preventDefault();
+    getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/TableList/get_s.php`, this.state)
+      .then(data => console.log(JSON.stringify(data)))
+      .catch(error => console.error(error));
+
+
+  }
+
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div style={{ alignContent: "Center" }}>
+        <GridContainer>
+
+          <GridItem xs={12} sm={12} md={10}>
+
+            <CustomTabs
+              title=""
+              headerColor="primary"
+              tabs={[
+                {
+                  tabName: "Current_Teachers",
+                  tabIcon: Accessibility,
+                  tabContent: (
+                    <form action="get_t.php" onSubmit={this.handleSubmit5}>
+
+
+                      <CardBody>
+                        <center><Build /></center>
+                      </CardBody>
+
+
+                    </form>
+                  )
+
+                }
+                , {
+
+                  tabName: "Current_Students",
+                  tabIcon: Accessibility,
+                  tabContent: (
+                    <form action="get_s.php" onSubmit={this.handleSubmit7}>
+                      <GridContainer>
+
+
+                        <CardBody>
+
+
+                          <center><Build2 /></center>
+
+
+
+                        </CardBody>
+
+
+                      </GridContainer>
+                    </form>
+                  )
+                }
+                , {
+                  tabName: "Current_Classes",
+                  tabIcon: Code,
+                  tabContent: (
+                    <form action="get_c.php" onSubmit={this.handleSubmit6}>
+                      <GridContainer>
+                        <CardBody>
+
+                          <center><Build1 /></center>
+
+
+
+                        </CardBody>
+                      </GridContainer>
+                    </form>
+                  )
+                }
               ]}
             />
-          </CardBody>
-        </Card>
-      </GridItem>
-
-      
-      <GridItem xs={12} sm={12} md={12}>
-        <Card plain>
-          <CardHeader plain color="primary">
-            <h4 className={classes.cardTitleWhite}>
-            View Students
-            </h4>
-            <p className={classes.cardCategoryWhite}>
-            Table Of All Students In the School
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["ParentName", "StudentName", "ClassID", "Phone", "Address"]}
-              tableData={[
-                ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
-                ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
-                ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
-                [
-                  "4",
-                  "Philip Chaney",
-                  "$38,735",
-                  "Korea, South",
-                  "Overland Park"
-                ],
-                [
-                  "5",
-                  "Doris Greene",
-                  "$63,542",
-                  "Malawi",
-                  "Feldkirchen in Kärnten"
-                ],
-                ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
+          </GridItem>
 
 
-
-
-      <GridItem xs={12} sm={12} md={12}>
-        <Card plain>
-          <CardHeader plain color="primary">
-            <h4 className={classes.cardTitleWhite}>
-            View Classes
-            </h4>
-            <p className={classes.cardCategoryWhite}>
-            Table Of All Classes In the School
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["Subject", "ClassID", "Country", "City", "Salary"]}
-              tableData={[
-                ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
-                ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
-                ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
-                [
-                  "4",
-                  "Philip Chaney",
-                  "$38,735",
-                  "Korea, South",
-                  "Overland Park"
-                ],
-                [
-                  "5",
-                  "Doris Greene",
-                  "$63,542",
-                  "Malawi",
-                  "Feldkirchen in Kärnten"
-                ],
-                ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
+        </GridContainer>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    </GridContainer>
-  );
+      </div>
+    )
+  }
 }
 
 export default withStyles(styles)(TableList);
