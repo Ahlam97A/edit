@@ -112,9 +112,9 @@ class FileInput extends React.Component {
                             <p className={this.cardCategoryWhite}></p>
                         </CardHeader>
                         <CardBody>
-                            <GridContainer>
-                                <div style={{ alignContent: "center", alignItems: "center" }}>
-                                    <h4 color="primary">To be simple for you to add List of Students , you should add A file of .csv extension (FileName.csv).  The file must be  contain Specific Information about the Students</h4>
+                            <GridContainer justify="center">
+                                <div style={{ textAlign: "center" }}>
+                                   <b> <h4 color="primary" style={{textAlign: "center"}} ><b style={{ textAlign: "center" }}>To add List of Students , you should add A file of .csv extension<Button style={{background:"#f8bbd0"}}><a href='http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/Exmple.csv'>Example.csv</a></Button></b></h4></b>
                                 </div>
 
                                 <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
@@ -127,7 +127,7 @@ class FileInput extends React.Component {
                         </CardBody>
                         <CardFooter>
                             <Button color="primary" name="Add" type="submit" value="Add">Add</Button>
-                            <Button color="primary">View</Button>
+                           
                             <File />
 
                         </CardFooter>

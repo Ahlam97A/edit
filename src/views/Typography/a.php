@@ -51,19 +51,21 @@ $input = json_decode($payload, TRUE);
       
      
 
-        $level=$input['level'];
+        $level=$input['sel_s'];
 
         $id = $input['id'];
         $p_id=$input['p_id'];
         $address=$input['address'];
         $phone=$input['phone'];
+        $city=$input['city'];
+       
 
 
 
 
 
 // Attempt insert query execution
-$sql = "INSERT INTO student(name,mname,lname, id,level,classid,date ,part_id,addresss,phone) VALUES ('$first_name','$mid_name' ,'$lname','$studentid','$level', '$id' ,'$date','$p_id','$address','$phone')";
+$sql = "INSERT INTO student(name,mname,lname, id,level,classid,date ,part_id,addresss,phone,city) VALUES ('$first_name','$mid_name' ,'$lname','$studentid','$level', '$id' ,'$date','$p_id','$address','$phone','$city')";
 echo "<br>";
 echo $sql;
 if(mysqli_query($conn, $sql)){

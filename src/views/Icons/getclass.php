@@ -14,7 +14,9 @@ if($link === false){
 $payload = file_get_contents('php://output');
 $input = json_decode($payload, true);
 // Attempt select query execution
-$sql = "SELECT * FROM class";
+
+$check=$input['check'];
+$sql = "SELECT * FROM class ";
 $myArray = array();
 if ($result = $link->query($sql)) {
 

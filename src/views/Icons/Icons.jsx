@@ -22,16 +22,16 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
-import EnhancedTable from "views/Icons/table_with_checkbox.jsx";
+
 
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 
 import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx";
-
+import FormContainer from "views/Icons/b"
 //import Controls from './Test';
 import FileInput from 'views/Icons/filereader';
 import MyTable from "views/Icons/table_with_checkbox.jsx"
-import ProductIndexTable from "views/Icons/Taps.jsx"
+import Application from "views/Icons/check.jsx"
 const style = {
     typo: {
         paddingLeft: "25%",
@@ -97,9 +97,7 @@ function postData(url, data) {
         .then(response => response.text());// parses response to JSON
 }
 
-function getData(url=`` , data={} ) {
-    if (data == undefined) { console.log('ahlam'); }
-    else {
+function getData(url, data ) {
         // Default options are marked with *
         if (data != " ") {
             return fetch(url, {
@@ -116,12 +114,13 @@ function getData(url=`` , data={} ) {
                 referrer: "no-referrer", // no-referrer, *client
                 //body: JSON.stringify(data), // body data type must match "Content-Type" header
             })
-                .then(response => { if (response != ' ') response.json() }) // parses response to JSON
+                .then(response =>response.json()) // parses response to JSON
 
 
         }
-    }
+    
 }
+
 
 
 //function Icons(props) {
@@ -132,6 +131,7 @@ class Icons extends React.Component {
 
         this.state = {
             flag: false,
+            data:[]
         };
         this.updateInput = this.updateInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -140,7 +140,7 @@ class Icons extends React.Component {
         this.handleSubmit5 = this.handleSubmit5.bind(this);
         this.contantaa = this.contantaa.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
+       // this.getTable1=this.getTable1.bind(this);
     }
 
     /*  
@@ -219,14 +219,14 @@ class Icons extends React.Component {
     componentDidMount() {
         var th = this;
         //this.serverRequest = axios.get(this.props.source)
-        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`)
+       getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`)
         getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/getclass.php`)
 
-            .then(function (event) {
-                th.setState({
-                    data: event//.data
-                });
-            })
+          .then(function (event) {
+               th.setState({
+                 data: event//.data
+               });
+         })
     }
     Search() {
         return { flag: false };
@@ -235,6 +235,9 @@ class Icons extends React.Component {
         e.preventDefault();
         this.setState({ flag: true });
     }
+  
+
+
 
     onSubmit() {
         postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`, this.state)
@@ -248,10 +251,12 @@ class Icons extends React.Component {
             </div>
         );
     }
+
     getTable() {
-        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/getclass.php`, this.state)
-            .then(data => console.log(JSON.stringify(data)))
-            .catch(error => console.error(error));
+      
+       getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/getclass.php`, this.state)
+        .then(data => console.log(JSON.stringify(data)))
+          .catch(error => console.error(error));
         return (
             <div>
                 {/* <Button  color="rose" type="submit" value="get" onClick={this.onClick.bind(this)} > 
@@ -262,7 +267,7 @@ class Icons extends React.Component {
                 <MyTable />
             </div>
         );
-
+                      
     }
 
 
@@ -339,6 +344,8 @@ class Icons extends React.Component {
                                                                   { /*  <Controls/> */}
 
                                                                 <Button color="primary" name="Add" type="submit" value="Add" onClick={this.handleClick1}>Add additional Class</Button>
+                                                                <Application />
+                                                               <FormContainer />
                                                             </CardBody>
                                                         </GridItem>
                                                         </center>

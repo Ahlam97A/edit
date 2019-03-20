@@ -184,9 +184,9 @@ class Build extends Component {
                     
                     <tbody>
                         {
-                            this.state.data.map(item =>
+                            this.state.data.map((item,i) =>
                                
-                                <tr key={item.id3}>
+                                <tr key={i}>
 
                                     <td>{item.fname}</td>
                                     <td>{item.mname}</td>

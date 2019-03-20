@@ -18,11 +18,11 @@ import Store from "@material-ui/icons/Store";
 import AppBar from '@material-ui/core/AppBar';
 import Code from "@material-ui/icons/Code";
 import TabPanel from '@material-ui/core/Tab';
-
+import SweetAlert from 'sweetalert-react';
 import React from "react";
 
 import Example from "ahlam.jsx";
-
+import { CSVLink, CSVDownload } from "react-csv";
 import CardHeader from "components/Card/CardHeader.jsx";
 
 import Build from "views/Typography/tablee.jsx";
@@ -50,8 +50,10 @@ import Primary from "components/Typography/Primary.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 import FileInput from "views/Typography/fileReader.jsx"
-import File from "views/Typography/file.jsx";
+import List from "views/Typography/list1.jsx";
+import swal from 'sweetalert';
 import Table1 from "views/Typography/table.jsx";
+
 const style = {
   typo: {
     paddingLeft: "25%",
@@ -139,12 +141,15 @@ class TypographyPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      show: false,
+    };
     this.updateInput = this.updateInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmit_upload = this.handleSubmit_upload.bind(this);
     this.handleSubmit3 = this.handleSubmit3.bind(this);
     this.handleSubmit4 = this.handleSubmit4.bind(this);
+    this.path=this.path.bind(this);
   }
 
 
@@ -166,7 +171,7 @@ class TypographyPage extends React.Component {
     postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/a.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
-      event.target.reset();
+    event.target.reset();
   }
 
   handleSubmit3 = (event) => {
@@ -176,7 +181,7 @@ class TypographyPage extends React.Component {
     postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/delete.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
-      event.target.reset();
+    event.target.reset();
 
   }
   handleSubmit4 = (event) => {
@@ -186,7 +191,7 @@ class TypographyPage extends React.Component {
     postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/delete_all.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
-      event.target.reset();
+    event.target.reset();
   }
 
 
@@ -235,6 +240,14 @@ class TypographyPage extends React.Component {
       })
 
   }
+  path = (event) => {
+    event.preventDefault();
+    alert('Handle it on your own');
+    console.log(this.state);
+    <a href='http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/Exmple.csv'>xx</a>
+     // .then(data => console.log(JSON.stringify(data)))
+     // .catch(error => console.error(error));
+  }
 
   render() {
     // var props;
@@ -242,9 +255,9 @@ class TypographyPage extends React.Component {
     const styleInput = {
       width: "100%",
       alignContent: "Center",
-      height: "20px",
+      height: "25px",
       margin: "3px 0",
-      border: "1px solid #ccc",
+      border: "1px solid #000",
       borderBottomLeftRadius: "10px",
       borderBottomRightRadius: "10px",
       borderTopRightRadius: "10px",
@@ -265,35 +278,90 @@ class TypographyPage extends React.Component {
                   tabIcon: Accessibility,
                   tabContent: (
                     <form action="a.php" onSubmit={this.handleSubmit} onChange={this.updateInput}>
-                    <GridContainer justify="center">
-                      <GridItem xs={12} sm={12} md={10}>
-                        <Card justify="center">
-                          <CardHeader color="warning">
-                            <h3 className={classes.cardCategoryWhite}>Student Page</h3>
-                            <h4 className={classes.cardTitleWhite}>Add A Student </h4>
-                          </CardHeader>
-                          <CardBody>
-                            <GridContainer justify="center">
+                      <GridContainer justify="center">
+                        <GridItem xs={12} sm={12} md={10}>
+                          <Card justify="center">
+                            <CardHeader style={{ background: "#f8bbd0" }}>
+                              <h3 className={classes.cardCategoryWhite}>Student Page</h3>
+                              <h4 className={classes.cardTitleWhite}>Add A Student </h4>
+                            </CardHeader>
+                            <CardBody>
+                              <GridContainer justify="center">
 
-                              <InputForm inputType="text" inputKey="fname" inputLabel="Student First Name:" />
-                              <InputForm inputType="text" inputKey="mname" inputLabel="Parent Name:" />
-                              <InputForm inputType="text" inputKey="lname" inputLabel="Student Last Name:" />
-                              <InputForm inputType="number" inputKey="id_st" inputLabel="Student ID:" />
-                              <InputForm inputType="text" inputKey="id" inputLabel="class ID:" />
-                              <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" />
-                              <InputForm inputType="number" inputKey="p_id" inputLabel="Parent ID : " />
-                              <InputForm inputType="text" inputKey="level" inputLabel="Level : " />
-                              <InputForm inputType="text" inputKey="address" inputLabel="Address : " />
-                              <InputForm inputType="text" inputKey="city" inputLabel="City : " />
-                              <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " />
+                                <InputForm inputType="text" inputKey="fname" inputLabel="First Name:" />
+                                <InputForm inputType="text" inputKey="mname" inputLabel="Mid Name:" />
+                                <InputForm inputType="text" inputKey="lname" inputLabel=" Last Name:" />
+                                <InputForm inputType="number" inputKey="id_st" inputLabel="Student ID:" />
+                                <InputForm inputType="number" inputKey="p_id" inputLabel="Parent ID : " />
 
-                            </GridContainer>
-                          </CardBody>
-                          <CardFooter>
-                            <Button color="primary" name="Add" type="submit" value="Add">Add</Button>
-                          </CardFooter>
-                        </Card>
-                      </GridItem>
+                                <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" />
+                                <div style={{ display: 'flex', width: '100%' }}>
+                                  <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }} >
+
+                                    <InputLabel style={{ color: "#000", width: "300px", alignContent: "Center", textAlign: "center" }}>Level of class</InputLabel>
+                                  </GridItem>
+                                  <GridItem xs={12} sm={6} md={12}>
+                                    <select name="sel_s" required style={styleInput} onChange={this.updateInput}   /*updateInput={this.updateInput} */ value={this.state.value}>
+                                      <option></option>
+                                      <option name="sel_s">First</option>
+                                      <option name="sel_s"> Second</option>
+                                      <option name="sel_s"> Thrid</option>
+                                      <option name="sel_s"> Fourth</option>
+                                      <option name="sel_s">Fifth</option>
+                                      <option name="sel_s"> Sixth</option>
+                                      <option name="sel_s"> Seventh</option>
+                                      <option name="sel_s"> Eigthth</option>
+                                      <option name="sel_s"> Ninth</option>
+                                      <option name="sel_s"> Tenth</option>
+
+                                    </select>
+                                  </GridItem>
+                                </div>
+
+                                <div style={{ display: 'flex', width: '100%' }}>
+                                  <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }} >
+
+                                    <InputLabel style={{ color: "#000", width: "300px", alignContent: "Center", textAlign: "center" }}>Section</InputLabel>
+                                  </GridItem>
+                                  <GridItem xs={12} sm={6} md={12}>
+                                    <select name="id" required style={styleInput} onChange={this.updateInput}   /*updateInput={this.updateInput} */ value={this.state.value}>
+                                      <option></option>
+                                      <option name="id">A</option>
+                                      <option name="id"> B</option>
+                                      <option name="id"> C</option>
+                                      <option name="id"> D</option>
+                                      <option name="id">E</option>
+
+
+                                    </select>
+                                  </GridItem>
+                                </div>
+                                <InputForm inputType="text" inputKey="city" inputLabel="City : " />
+                                <InputForm inputType="text" inputKey="address" inputLabel="Address : " />
+
+                                <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " />
+
+                              </GridContainer>
+                            </CardBody>
+                            <CardFooter>
+                              <Button color="primary" name="Add" type="submit" onClick={() => swal({
+
+                                title: "Add Successfully!",
+                                text: "You Add The Student in The School!",
+                                icon: "success",
+                                button: "Continue!",
+                              })} value="Add">Add</Button>
+                              <SweetAlert
+                                show={this.state.show}
+                                title="Demo"
+                                success
+                                text="SweetAlert in React"
+                                onConfirm={() => this.setState({ show: false })}
+                              />
+
+                            </CardFooter>
+                          </Card>
+                        </GridItem>
                       </GridContainer>
                     </form>
                   )
@@ -304,16 +372,25 @@ class TypographyPage extends React.Component {
                   tabIcon: LibraryBooks,
                   tabContent: (
                     <center>
-                      
-                      <GridContainer justify="center">
-                     
-                        <FileInput />
 
+                      <GridContainer justify="center">
+
+                        <FileInput />
+                        {/*}
+                        {process.env.PUBLIC_URL + 'C:/Users/ahlam/OneDrive/Desktop/Untitled spreadsheet - Sheet1.csv'}
+                        <br />
+                        <br />
+                        <a href='C:/Users/ahlam/OneDrive/Desktop/Untitled spreadsheet - Sheet1.csv' >Download</a>
+                        <form onSubmit={this.path}>
+                        <button type="submit"> download</button>
+                        </form>
+                  */}
+                        <a href='http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/Exmple.csv'>Example.csv</a>
                       </GridContainer>
                     </center>
                   )
                 }
-                , {
+              /*  , {
 
                   tabName: "Delete",
                   tabIcon: Accessibility,
@@ -348,7 +425,7 @@ class TypographyPage extends React.Component {
                     </GridContainer>
 
                   )
-                }
+                }*/
                 , {
                   tabName: "Search",
                   tabIcon: Code,
@@ -379,6 +456,7 @@ class TypographyPage extends React.Component {
                                   <Table1 />
 
                                 </CardBody>
+                                {/*} <List />*/}
                               </div>
                             </CardBody>
 

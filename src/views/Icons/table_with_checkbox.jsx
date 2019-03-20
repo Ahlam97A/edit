@@ -177,7 +177,7 @@ function getData(url) {
 
 
 const TableRow = ({ selected, id, name, handleSelect }) => {
-    console.log(`render TableRow :: ${id} :: ${name}`);
+    //console.log(`render TableRow :: ${id} :: ${name}`);
     //console.log(this.state)
     return (
         <tr style={{ textAlign: 'right' }}>
@@ -186,8 +186,9 @@ const TableRow = ({ selected, id, name, handleSelect }) => {
                     //key={id}
                     name="check[]"
                     type="checkbox"
-                    //checked={selected}
+                    checked={selected}
                     selected={false}
+                    value="check"
                    // checked="false"
                      //isSelectedAll="false"
                     onChange={handleSelect}
@@ -206,14 +207,16 @@ const TableRow = ({ selected, id, name, handleSelect }) => {
 
 
 export default class MyTable extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             selected: {},
             selectAll: 0,
             data: [],
-            checked:"false"
+            checked:"false",
+            checked: false,
+
         }
         this.handleChange=this.handleChange.bind(this);
     }
@@ -231,6 +234,8 @@ export default class MyTable extends React.Component {
 
 
     }
+    handleCheckboxChange = event =>
+    this.setState({ checked: event.target.checked })
    /* toggleSelectAll() {
 		let newSelected = {};
 
@@ -311,10 +316,11 @@ export default class MyTable extends React.Component {
 
     
 
-    handleSelect = (e) => {
+    handleSelect = (event) => {
        /* const selected = this.state.selected;
         selected[e.target.name] = e.target.checked;
         this.setState({ selected });*/
+   
     }
 
     render() {
@@ -351,17 +357,17 @@ export default class MyTable extends React.Component {
                 <tbody>
                     {
 
-                        this.state.data.map(item => {
+                        this.state.data.map((item,i) => {
                             if (this.state.data != "") {
 
                                 return (
                                     <TableRow
-                                        key={item.id}
+                                        key={i}
                                         id={item.level}
                                         name={item.id_class}
-                                        na
-                                        //selected={this.state.selected[item.level]} 
-                                        handleSelect={this.handleSelect}
+                                    
+                                        selected={this.state.selected[item.level]} 
+                                        handleSelect={this.handleSelectAllClick}
                                     />
                                 );
                             }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import color from '@material-ui/core/colors/deepOrange';
+import Search from '@material-ui/icons/Search';
 
+import Button from "components/CustomButtons/Button.jsx";
 
-function getData(url = ``, data = {}) {
+function getData(url , data = {}) {
     // Default options are marked with *
     return fetch(url, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -12,7 +14,7 @@ function getData(url = ``, data = {}) {
         headers: {
             "Content-Type": "application/json",
 
-            // "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/x-www-form-urlencoded",
         },
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
@@ -29,7 +31,8 @@ class Build extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+          
         };
         this.updateInput = this.updateInput.bind(this);
 
@@ -60,7 +63,7 @@ class Build extends Component {
         state[event.target.name] = event.target.value;
         this.setState(state);
     }
-
+   
 
 
     handleSubmit5 = (event) => {
@@ -125,7 +128,11 @@ class Build extends Component {
     render() {
         const contents = this.state.data.map(item => {
             //change the title and location key based on your API
-            return (<tr key={item.id}>
+            
+            return (
+                
+            
+            <tr key={item.id}>
 
                 <tr>
                     <td>{item.fname}</td>
@@ -142,6 +149,10 @@ class Build extends Component {
         })
         return (
             <div className="Table">
+             
+
+
+            
                 <table style={{ border: " 1px solid black" ,align:"center"}} onChange={this.props.get}>
                     <thead style={{ border: " 1px solid black", background: "#555555"}}>
                         <tr style={{ border: " 1px solid black"}}>

@@ -19,6 +19,7 @@
     "react": "^16.5.2",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-chartist": "0.13.1",
+    "react-csv": "^1.1.1",
     "react-csv-to-table": "0.0.1",
     "react-dom": "^16.5.2",
     "react-file-reader": "^1.1.4",
@@ -28,7 +29,10 @@
     "react-swipeable-views": "0.12.17",
     "react-table": "^6.9.2",
     "react-tabs-redux": "^4.0.0",
-    "reactstrap": "^7.1.0"
+    "reactstrap": "^7.1.0",
+    "selectly": "^0.5.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert-react": "^0.4.11"
   },
   "scripts": {
     "start": "react-scripts start",
