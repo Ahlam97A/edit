@@ -171,7 +171,15 @@ class TypographyPage extends React.Component {
     postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/a.php`, this.state)
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
-    event.target.reset();
+      event.target.reset();
+      return swal({
+
+        title: "Add Successfully!",
+        text: "You Add The Student in The School!",
+        icon: "success",
+        button: "Continue!",
+      })
+         
   }
 
   handleSubmit3 = (event) => {
@@ -291,8 +299,9 @@ class TypographyPage extends React.Component {
                                 <InputForm inputType="text" inputKey="fname" inputLabel="First Name:" />
                                 <InputForm inputType="text" inputKey="mname" inputLabel="Mid Name:" />
                                 <InputForm inputType="text" inputKey="lname" inputLabel=" Last Name:" />
-                                <InputForm inputType="number" inputKey="id_st" inputLabel="Student ID:" />
+                                <InputForm inputType="number" inputKey="id_st" inputLabel="Student ID:" max="999"  />
                                 <InputForm inputType="number" inputKey="p_id" inputLabel="Parent ID : " />
+                             
 
                                 <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" />
                                 <div style={{ display: 'flex', width: '100%' }}>
@@ -303,16 +312,16 @@ class TypographyPage extends React.Component {
                                   <GridItem xs={12} sm={6} md={12}>
                                     <select name="sel_s" required style={styleInput} onChange={this.updateInput}   /*updateInput={this.updateInput} */ value={this.state.value}>
                                       <option></option>
-                                      <option name="sel_s">First</option>
-                                      <option name="sel_s"> Second</option>
-                                      <option name="sel_s"> Thrid</option>
-                                      <option name="sel_s"> Fourth</option>
-                                      <option name="sel_s">Fifth</option>
-                                      <option name="sel_s"> Sixth</option>
-                                      <option name="sel_s"> Seventh</option>
-                                      <option name="sel_s"> Eigthth</option>
-                                      <option name="sel_s"> Ninth</option>
-                                      <option name="sel_s"> Tenth</option>
+                                      <option name="sel_s">1st</option>
+                                      <option name="sel_s"> 2nd</option>
+                                      <option name="sel_s"> 3th</option>
+                                      <option name="sel_s"> 4th</option>
+                                      <option name="sel_s">5th</option>
+                                      <option name="sel_s">6th</option>
+                                      <option name="sel_s"> 7th</option>
+                                      <option name="sel_s"> 8th</option>
+                                      <option name="sel_s"> 9th</option>
+                                      <option name="sel_s"> 10th</option>
 
                                     </select>
                                   </GridItem>
@@ -344,13 +353,7 @@ class TypographyPage extends React.Component {
                               </GridContainer>
                             </CardBody>
                             <CardFooter>
-                              <Button color="primary" name="Add" type="submit" onClick={() => swal({
-
-                                title: "Add Successfully!",
-                                text: "You Add The Student in The School!",
-                                icon: "success",
-                                button: "Continue!",
-                              })} value="Add">Add</Button>
+                              <Button color="primary" name="Add" type="submit"value="Add">Add</Button>
                               <SweetAlert
                                 show={this.state.show}
                                 title="Demo"

@@ -22,7 +22,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
-
+import CheckBox2 from "views/Icons/checkbox_2";
 
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 
@@ -137,9 +137,9 @@ class Icons extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmit3 = this.handleSubmit3.bind(this);
         this.handleSubmit4 = this.handleSubmit4.bind(this);
-        this.handleSubmit5 = this.handleSubmit5.bind(this);
+       // this.handleSubmit5 = this.handleSubmit5.bind(this);
         this.contantaa = this.contantaa.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onSubmit11 = this.onSubmit11.bind(this);
        // this.getTable1=this.getTable1.bind(this);
     }
 
@@ -219,7 +219,7 @@ class Icons extends React.Component {
     componentDidMount() {
         var th = this;
         //this.serverRequest = axios.get(this.props.source)
-       getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`)
+      //// getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`)
         getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/getclass.php`)
 
           .then(function (event) {
@@ -239,7 +239,7 @@ class Icons extends React.Component {
 
 
 
-    onSubmit() {
+    onSubmit11() {
         postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`, this.state)
             .then(data => console.log(JSON.stringify(data)))
             .catch(error => console.error(error));
@@ -253,10 +253,9 @@ class Icons extends React.Component {
     }
 
     getTable() {
+        var th=this;
       
-       getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/getclass.php`, this.state)
-        .then(data => console.log(JSON.stringify(data)))
-          .catch(error => console.error(error));
+     
         return (
             <div>
                 {/* <Button  color="rose" type="submit" value="get" onClick={this.onClick.bind(this)} > 
@@ -315,16 +314,15 @@ class Icons extends React.Component {
                                                         <CardBody>
                                                             <GridContainer>
                                                                 
-                                                                <InputForm inputType="text" inputKey="fname" inputLabel="Teacher First Name:" />
-                                                                <InputForm inputType="text" inputKey="mname" inputLabel="Teacher Mid  Name:" />
-                                                                <InputForm inputType="text" inputKey="lname" inputLabel="Teacher Last Name:" />
+                                                                <InputForm inputType="text" inputKey="fname" inputLabel="First Name:" />
+                                                                <InputForm inputType="text" inputKey="mname" inputLabel="Mid  Name:" />
+                                                                <InputForm inputType="text" inputKey="lname" inputLabel="Last Name:" />
                                                                 <InputForm inputType="number" inputKey="id_t" inputLabel="Teacher ID:" />
                                                                 <InputForm inputType="text" inputKey="sub" inputLabel="Subject : " />
                                                                 <InputForm inputType="text" inputKey="city" inputLabel="City :" />
                                                                 <InputForm inputType="date" inputKey="DateofBirth" inputLabel="Date of Birth :" />
                                                                 <InputForm inputType="text" inputKey="address" inputLabel="Address : " />
                                                                 <InputForm inputType="number" inputKey="phone" inputLabel="Phone : " />
-
 
                                                             </GridContainer>
                                                         </CardBody>
@@ -339,13 +337,13 @@ class Icons extends React.Component {
 
 
                                                             <CardBody>
-                                                              
-                                                               {this.getTable()} 
+                                                              <CheckBox2 />
+                                                               
                                                                   { /*  <Controls/> */}
 
                                                                 <Button color="primary" name="Add" type="submit" value="Add" onClick={this.handleClick1}>Add additional Class</Button>
-                                                                <Application />
-                                                               <FormContainer />
+                                                               {/*} <Application />*/}
+                                                               {/*<FormContainer />*/}
                                                             </CardBody>
                                                         </GridItem>
                                                         </center>
@@ -414,7 +412,7 @@ class Icons extends React.Component {
                                     tabName: "Search",
                                     tabIcon: Code,
                                     tabContent: (
-                                        <form action="search.php" onSubmit={this.onSubmit}>
+                                        <form action="search.php" onSubmit={this.onSubmit11}>
                                             <GridContainer>
                                                 <GridItem xs={12} sm={12} md={12}>
                                                     <Card>
@@ -428,12 +426,12 @@ class Icons extends React.Component {
                                                                 <input style={{ width: "50%", color: "#000", margin: "3px 0", height: "40px", border: "1px solid #ccc", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", borderTopLeftRadius: "10px" }}
                                                                     type="text" placeholder="id" key="id" name="search" onChange={this.updateInput} />
                                                                 <Button justIcon round color="rose" type="submit" value="Search" onClick={this.onClick.bind(this)} >
-                                                                    <Search onSubmit={this.onSubmit} />
+                                                                    <Search onSubmit={this.onSubmit11} />
                                                                 </Button>
                                                                 
                                                                 <CardBody>
 
-                                                                {this.onSubmit()}
+                                                                {this.onSubmit11()}
 
                                                                 </CardBody>
                                                             </div>

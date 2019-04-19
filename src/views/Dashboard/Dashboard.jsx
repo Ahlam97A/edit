@@ -16,6 +16,7 @@ import AccessTime from "@material-ui/icons/AccessTime";
 import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
+import Button from "components/CustomButtons/Button.jsx";
 import Cloud from "@material-ui/icons/Cloud";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
@@ -29,7 +30,9 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-
+import Chart1 from "views/Dashboard/chart";
+import Donut from "views/Dashboard/dout";
+import HHHH from "views/Dashboard/html";
 import { bugs, website, server } from "variables/general.jsx";
 
 import {
@@ -62,19 +65,15 @@ class Dashboard extends React.Component {
                 <CardIcon color="warning">
                   <Icon>content_copy</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Used Space</p>
+                <p className={classes.cardCategory}></p>
                 <h3 className={classes.cardTitle}>
-                  49/50 <small>GB</small>
+                  Students<small></small>
                 </h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Get more space
-                  </a>
+               
+                  <Button round color="warning" style={{width:"100%"}} > show Students</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -85,13 +84,13 @@ class Dashboard extends React.Component {
                 <CardIcon color="success">
                   <Store />
                 </CardIcon>
-                <p className={classes.cardCategory}>Revenue</p>
-                <h3 className={classes.cardTitle}>$34,245</h3>
+                <p className={classes.cardCategory}></p>
+                <h3 className={classes.cardTitle}>Teachers</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <DateRange />
-                  Last 24 Hours
+                  
+                <Button round color="success" style={{width:"100%"}} >show Teachers</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -102,37 +101,40 @@ class Dashboard extends React.Component {
                 <CardIcon color="danger">
                   <Icon>info_outline</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Fixed Issues</p>
-                <h3 className={classes.cardTitle}>75</h3>
+                <p className={classes.cardCategory}></p>
+                <h3 className={classes.cardTitle}>Absence</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <LocalOffer />
-                  Tracked from Github
+                    
+                <Button round color="danger" style={{width:"100%"}} >show absence</Button>
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
+         
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="info" stats icon>
                 <CardIcon color="info">
                   <Accessibility />
                 </CardIcon>
-                <p className={classes.cardCategory}>Followers</p>
-                <h3 className={classes.cardTitle}>+245</h3>
+                <p className={classes.cardCategory}></p>
+                <h3 className={classes.cardTitle}>Massage</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Update />
-                  Just Updated
+                <Button round color="info" style={{width:"100%"}} >show Massage</Button>
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
         </GridContainer>
+       
+       
         <GridContainer>
-          <GridItem xs={12} sm={12} md={4}>
+          <GridItem xs={12} sm={12} md={6}>
+          {/*}
             <Card chart>
               <CardHeader color="success">
                 <ChartistGraph
@@ -157,9 +159,12 @@ class Dashboard extends React.Component {
                   <AccessTime /> updated 4 minutes ago
                 </div>
               </CardFooter>
-            </Card>
+    </Card>*/}
+             <Chart1 />
+             <HHHH />
           </GridItem>
           <GridItem xs={12} sm={12} md={4}>
+          {/*}
             <Card chart>
               <CardHeader color="warning">
                 <ChartistGraph
@@ -183,6 +188,8 @@ class Dashboard extends React.Component {
                 </div>
               </CardFooter>
             </Card>
+  */}
+               <Donut />
           </GridItem>
           <GridItem xs={12} sm={12} md={4}>
             <Card chart>
@@ -209,6 +216,9 @@ class Dashboard extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
+
+
+        {/*}
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
             <CustomTabs
@@ -274,6 +284,7 @@ class Dashboard extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
+                */}
       </div>
     );
   }
