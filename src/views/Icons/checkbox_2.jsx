@@ -60,7 +60,7 @@ export default class CheckBox2 extends React.Component{
                                 </tr>
 
 
-                            )
+                            )      
 
 
                         }

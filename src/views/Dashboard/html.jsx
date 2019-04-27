@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Chart from 'react-apexcharts'
+import Chart from 'react-apexcharts';
+
+import Histogram from 'react-chart-histogram';
 
 export default class HHHH extends Component {
 
@@ -14,17 +16,20 @@ export default class HHHH extends Component {
   }
 
   render() {
-
+    const labels = ['2016', '2017', '2018'];
+    const data = [324, 45, 672];
+    const options = { fillColor: '#F44444', strokeColor: '#0000FF' };
     return (
-       
-        <html>
-      
-        <body>
-        aksml,.c
-        </body>
-        </html>
-        );
-    }
+      <div>
+        <Histogram
+          xLabels={labels}
+          yValues={data}
+          width='400'
+          height='200'
+          options={options}
+          options={options}
+        />
+      </div>
+    )
+  }
 }
-
-

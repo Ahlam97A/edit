@@ -16,33 +16,28 @@ $input = json_decode($payload, true);
 
 $param1=$_GET['param1'];
 $param2=$_GET['param2'];
-$sql="SELECT * FROM grades WHERE name='$param1' and id='$param2' ";
+$sql="SELECT SUM(point) FROM  grades WHERE name='aya said yamin' ";
 
 $myArray = array();
 
 if ($result = $link->query($sql)) {
  
     while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-     // echo $result;
+     // echo $row;
         
-        $myArray[] = $row;    
+        $myArray[] = $row; 
         
     }
    // echo (int)$myArray;
   // $x=json_encode($myArray);
   // echo $x;
-    echo json_encode($myArray,JSON_NUMERIC_CHECK );
+    if($myArray>55){
+    echo json_encode($myArray,JSON_NUMERIC_CHECK );}
 }
 
  else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
-$num = "1000.314"; 
-  
-// Convert string in number using  
-// number_format(), function 
-//echo number_format($num), "\n"; 
 
-// Close connection
 mysqli_close($link);
 ?>

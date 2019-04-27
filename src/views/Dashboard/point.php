@@ -14,9 +14,9 @@ $payload = file_get_contents('php://input');
 $input = json_decode($payload, true);
 
 
-$param1=$_GET['param1'];
-$param2=$_GET['param2'];
-$sql="SELECT * FROM grades WHERE name='$param1' and id='$param2' ";
+//$param1=$_GET['param1'];
+//$param2=$_GET['param2'];
+$sql="SELECT * FROM grades WHERE level='1st' and id_class='A' ";
 
 $myArray = array();
 

@@ -18,18 +18,29 @@ import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Button from "components/CustomButtons/Button.jsx";
 import Cloud from "@material-ui/icons/Cloud";
+import InputLabel from '@material-ui/core/InputLabel';
+import InputForm from "views/Typography/InputForm.jsx";
+import axios from 'axios';
+import Info from "components/Typography/Info.jsx";
+import CardFooter from "components/Card/CardFooter.jsx";
+import Quote from "components/Typography/Quote.jsx";
+import Danger from "components/Typography/Danger.jsx";
+
+import GridContainer from "components/Grid/GridContainer.jsx";
+import Primary from "components/Typography/Primary.jsx";
+
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
+import {Garph} from "views/Graph/Graph";
 import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-import Danger from "components/Typography/Danger.jsx";
+
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import CardFooter from "components/Card/CardFooter.jsx";
+
 import Chart1 from "views/Dashboard/chart";
 import Donut from "views/Dashboard/dout";
 import HHHH from "views/Dashboard/html";
@@ -42,15 +53,53 @@ import {
 } from "variables/charts.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
+function getData(url = ``, data = {}) {
+  // Default options are marked with *
+  return fetch(url, {
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
 
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    //body: JSON.stringify(data), // body data type must match "Content-Type" header
+  })
+    .then(response => response.json()); // parses response to JSON
+}
 class Dashboard extends React.Component {
-  state = {
-    value: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0,
+      data: []
+
+    }
+  }
+
+  notif= (e) => {
+    
+      e.preventDefault();
+      window.location.assign('/notifications/');
+    
+  }
   handleChange = (event, value) => {
     this.setState({ value });
   };
-
+  componentDidMount() {
+    console.log(this.state.series);
+    var th = this;
+    getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Dashboard/point.php`)
+      .then(function (event) {
+        th.setState({
+          data: event//.data
+        });
+      })
+  }
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
@@ -72,8 +121,8 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-               
-                  <Button round color="warning" style={{width:"100%"}} > show Students</Button>
+
+                  <Button round color="warning" style={{ width: "100%" }} > show Students</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -89,8 +138,8 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  
-                <Button round color="success" style={{width:"100%"}} >show Teachers</Button>
+
+                  <Button round color="success" style={{ width: "100%" }} >show Teachers</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -106,13 +155,13 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                    
-                <Button round color="danger" style={{width:"100%"}} >show absence</Button>
+
+                  <Button round color="danger" style={{ width: "100%" }} >show absence</Button>
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
-         
+
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="info" stats icon>
@@ -124,17 +173,17 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                <Button round color="info" style={{width:"100%"}} >show Massage</Button>
+                  <Button round color="info" style={{ width: "100%" }} >show Massage</Button>
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
         </GridContainer>
-       
-       
+
+
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
-          {/*}
+            {/*}
             <Card chart>
               <CardHeader color="success">
                 <ChartistGraph
@@ -160,11 +209,65 @@ class Dashboard extends React.Component {
                 </div>
               </CardFooter>
     </Card>*/}
-             <Chart1 />
-             <HHHH />
+
           </GridItem>
+          <Garph />
+
+          <GridItem xs={12} sm={12} md={8} justify="center">
+            <form onSubmit={this.handleSubmit} onChange={this.updateInput} style={{ textAlign: "center", alignContent: "Center" }}>
+              <GridContainer justify="center">
+                <GridItem xs={12} sm={12} md={12}>
+                  <Card justify="center">
+                    <CardHeader >
+                      <h3 className={classes.cardCategoryWhite} style={{ color: "#000" }}>Top Students</h3>
+                      <h4 className={classes.cardTitleWhite}> </h4>
+                    </CardHeader>
+                    <CardBody>
+                      <GridContainer justify="center">
+
+                        <GridItem xs={12} sm={12} md={12} style={{ textAlign: "center" }} >
+                          {
+                            this.state.data.map((item, i) => (
+                              <table key={i} style={{textAlign:"center"}}>
+                              <tbody>
+                              <tr style={{ background: "#e1bee7",fontSize:"20px",textAlign:"center"}}>
+                                <td>
+                                <pre  style={{ background: "#e1bee7", color: "#000", fontFamily: "Comic Sans MS", width: "500px", }}>{item.name} {item.point}% 
+                                Section :{item.level} </pre>
+                                </td>
+                                <td>
+                                <button style={{ textAlign: "left" }}  onClick={(e) => {
+                                                e.preventDefault();
+                                                window.location.assign('/notifications/'+ item.name + '/' + item.id + '/' + item.parent);
+                                            }}>Maggess</button></td>
+                              </tr>
+                              </tbody>
+                             
+                                
+                              </table>
+                            )
+                            )
+                          }
+
+                        </GridItem>
+                      </GridContainer>
+                    </CardBody>
+                    
+                  </Card>
+                </GridItem>
+              </GridContainer>
+            </form>
+            </GridItem>
+         
+
+
+
+
+
+          <Chart1 />
+
           <GridItem xs={12} sm={12} md={4}>
-          {/*}
+            {/*}
             <Card chart>
               <CardHeader color="warning">
                 <ChartistGraph
@@ -189,7 +292,8 @@ class Dashboard extends React.Component {
               </CardFooter>
             </Card>
   */}
-               <Donut />
+
+            <Donut />
           </GridItem>
           <GridItem xs={12} sm={12} md={4}>
             <Card chart>
@@ -216,6 +320,7 @@ class Dashboard extends React.Component {
             </Card>
           </GridItem>
         </GridContainer>
+        <HHHH />
 
 
         {/*}
