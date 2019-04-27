@@ -35,7 +35,7 @@ import {Garph} from "views/Graph/Graph";
 import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-
+import 'views/Dashboard/circle.css'
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
@@ -213,7 +213,7 @@ class Dashboard extends React.Component {
           </GridItem>
           <Garph />
 
-          <GridItem xs={12} sm={12} md={8} justify="center">
+          <GridItem xs={12} sm={12} md={8} >
             <form onSubmit={this.handleSubmit} onChange={this.updateInput} style={{ textAlign: "center", alignContent: "Center" }}>
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={12}>
