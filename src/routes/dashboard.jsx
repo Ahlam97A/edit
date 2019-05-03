@@ -6,7 +6,7 @@ import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 import Person from "@material-ui/icons/Person";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
-
+import Chart from "views/Graphh/Graph_page";
 import  EditCriteria from "views/Maps/Maps.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import TableList from "views/TableList/TableList.jsx";
@@ -66,12 +66,13 @@ const dashboardRoutes = [
     icon: Notifications,
     component: NotificationsPage
   },
+
   {
-    path: "/upgrade-to-pro",
-    sidebarName: "Upgrade To PRO",
-    navbarName: "Upgrade To PRO",
-    icon: Unarchive,
-    component: UpgradeToPro
+    path: "/chart",
+    sidebarName: "Chart",
+    navbarName: "Chart",
+    icon: Dashboard,
+    component: Chart
   },
   { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
 ];

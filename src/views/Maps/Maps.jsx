@@ -122,22 +122,20 @@ class EditCriteria extends React.Component {
 
 
                 <GridContainer>
-                    <GridItem xs={12} sm={12} md={4}>
+                    <GridItem xs={12} sm={12} md={6}>
 
                         <Card>
-                            <CardHeader color="warning">
+                            <CardHeader color="primary">
                                 <h4 className={classes.cardTitleWhite}>School Information</h4>
 
                             </CardHeader>
                             <CardBody>
                                 <Table
-                                    tableHeaderColor="warning"
-                                    tableHead={["ID", "Name", "Salary", "Country"]}
+                                    tableHeaderColor="primary"
+                                    tableHead={["School", "Number of class", "Number of Student", "Phone"]}
                                     tableData={[
-                                        ["1", "Dakota Rice", "$36,738", "Niger"],
-                                        ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                                        ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                                        ["4", "Philip Chaney", "$38,735", "Korea, South"]
+                                        ["AlAmal School ", "20", "800", "056987463"],
+                                        
                                     ]}
                                 />
                             </CardBody>
@@ -147,14 +145,14 @@ class EditCriteria extends React.Component {
                     <form  action="addClass.php" onSubmit={this.handleSubmit2} >
                         <GridItem xs={12} sm={12} md={7}>
                             <Card>
-                                <CardHeader color="warning">
+                                <CardHeader color="primary">
                                     <h4 className={classes.cardTitleWhite}>Add Classes</h4>
                                 </CardHeader>
                                 <CardBody>
-                                    <InputLabel style={{ width: "60%" }}>Class Level: </InputLabel>
+                                    <InputLabel style={{ width: "60%" }}>Class : </InputLabel>
                                     <input required onChange={this.updateInput} style={{ width: "100%", height: "20px", margin: "3px 0", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} key="level" type="text" name="level" />
 
-                                    <InputLabel style={{ width: "60%" }}>ClassID: </InputLabel>
+                                    <InputLabel style={{ width: "60%" }}>Section: </InputLabel>
                                     <input  required onChange={this.updateInput} style={{ width: "100%", height: "20px", margin: "3px 0", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} key="id_class" type="number" name="id_classs" />
                                 </CardBody>
 
@@ -168,42 +166,6 @@ class EditCriteria extends React.Component {
                     </form>
 
 
-                        
-                    <form action="point.php" onSubmit={this.handleSubmit}>
-                        <GridItem xs={12} sm={12} md={10}>
-                            <Card>
-
-                                <CardHeader color="warning">
-                                    <h4 className={classes.cardTitleWhite}>Edit Criteria</h4>
-                                    <p className={classes.cardCategoryWhite}>Complete your School Criteria</p>
-                                </CardHeader>
-                                <CardBody>
-
-                                    <InputLabel style={{ width: "80%" }}>Max_Number_Allowed_Absences: </InputLabel>
-                                    <input onChange={this.updateInput} style={{ width: "100%", height: "20px", margin: "3px 0", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} key="max" type="text" name="max" />
-                                    <br />
-                                    <br />
-
-                                    <InputLabel style={{ width: "60%" }}>Give An Equivalent Points on Different Criteria : </InputLabel><br />
-                                    <InputLabel >      Bad  </InputLabel>  <br />
-                                    <input onChange={this.updateInput} style={{ width: "100%", height: "20px", margin: "3px 0", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} key="bad" type="text" name="bad" />    <br />
-                                    <InputLabel style={{ color: "#AAAAAA" }}> Good </InputLabel> <br />
-                                    <input onChange={this.updateInput} style={{ width: "100%", margin: "3px 0", height: "20px", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} type="text" name="good" key="good" />  <br />
-                                    <InputLabel style={{ color: "#AAAAAA" }}>Very Good </InputLabel> <br />
-                                    <input onChange={this.updateInput} style={{ width: "100%", margin: "3px 0", height: "20px", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} type="text" name="verygood" key="verygood" />   <br />
-                                    <InputLabel style={{ color: "#AAAAAA" }}>Excellent </InputLabel> <br />
-                                    <input onChange={this.updateInput} style={{ width: "100%", margin: "3px 0", height: "20px", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} type="text" name="Excellent" key="Excellent" />
-                                    <br />
-
-
-                                    <CardFooter>
-
-                                        <Button color="warning" name="Update" type="submit" value="Update">Update Criteria</Button>
-                                    </CardFooter>
-                                </CardBody>
-                            </Card>
-                        </GridItem>
-                    </form>
 
                 </GridContainer>
             </div>

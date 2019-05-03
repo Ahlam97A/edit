@@ -14,9 +14,7 @@ $payload = file_get_contents('php://input');
 $input = json_decode($payload, true);
 
 
-$param1=$_GET['param1'];
-$param2=$_GET['param2'];
-$sql="SELECT SUM(point) FROM  grades WHERE name='aya said yamin' ";
+$sql="SELECT name,id,parent,point FROM  grades where level='1st'";
 
 $myArray = array();
 
@@ -31,8 +29,8 @@ if ($result = $link->query($sql)) {
    // echo (int)$myArray;
   // $x=json_encode($myArray);
   // echo $x;
-    if($myArray>55){
-    echo json_encode($myArray,JSON_NUMERIC_CHECK );}
+    
+    echo json_encode($myArray);
 }
 
  else{

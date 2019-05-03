@@ -34,7 +34,7 @@ class InputForm extends React.Component {
         return (
             <div style={{display: 'flex', width: '100%'}}>
                 <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                    <InputLabel style={{ color: "#000", alignContent: "Center" } }> {this.props.inputLabel} </InputLabel>
+                    <InputLabel style={{ color: "#000", alignContent: "Center" ,fontFamily:"Comic Sans MS" } }> {this.props.inputLabel} </InputLabel>
                 </GridItem>
                 <GridItem xs={12} sm={6} md={12}>
                     <input required style={styleInput} type={this.props.inputType} name={this.props.inputKey} onChange={this.props.updateInput} max={this.props.max}/>

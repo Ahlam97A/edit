@@ -307,7 +307,7 @@ class TypographyPage extends React.Component {
                                 <div style={{ display: 'flex', width: '100%' }}>
                                   <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }} >
 
-                                    <InputLabel style={{ color: "#000", width: "300px", alignContent: "Center", textAlign: "center" }}>Level of class</InputLabel>
+                                    <InputLabel style={{ color: "#000", width: "300px", alignContent: "Center", textAlign: "center" , fontSize: "18px", fontFamily: "Comic Sans MS" }}>Level of class</InputLabel>
                                   </GridItem>
                                   <GridItem xs={12} sm={6} md={12}>
                                     <select name="sel_s" required style={styleInput} onChange={this.updateInput}   /*updateInput={this.updateInput} */ value={this.state.value}>
@@ -437,7 +437,7 @@ class TypographyPage extends React.Component {
                       <GridContainer>
                         <GridItem xs={12} sm={12} md={12}>
                           <Card>
-                            <CardHeader color="info">
+                            <CardHeader color="primary">
                               <h4 className={classes.cardTitleWhite}>Search on a specific Student</h4>
                               <p className={classes.cardCategoryWhite}>by id </p>
                             </CardHeader>

@@ -107,7 +107,7 @@ class FileInput extends React.Component {
             <form action="upload_csvfile.php" onSubmit={this.handleSubmit}>
                 <GridItem xs={12} sm={12} md={12}>
                     <Card>
-                        <CardHeader color="info">
+                        <CardHeader color="primary">
                             <h4 className={this.cardTitleWhite}>Add List Of Students</h4>
                             <p className={this.cardCategoryWhite}></p>
                         </CardHeader>

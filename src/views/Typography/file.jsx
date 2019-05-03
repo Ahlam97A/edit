@@ -44,11 +44,12 @@ export default class File extends React.Component {
         csvDelimiter=","
         tableClassName="table table-striped table-hover"
       />
+      {/*
 <form  action="upload_csvfile.php" onSubmit={this.handleSubmit}><Button color="primary" onSubmit={this.handleSubmit}>Accept</Button></form>
 <Button color="primary" onSubmit={this.handleSubmit}>Accept</Button>
 <Button color="primary">Deny</Button>
 
-      
+  */}
     </div>;
   } 
 

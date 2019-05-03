@@ -32,16 +32,18 @@ import Primary from "components/Typography/Primary.jsx";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import {Garph} from "views/Graph/Graph";
+import {Garph2} from "views/Graph/Graph2";
+
 import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-import 'views/Dashboard/circle.css'
+
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 
-import Chart1 from "views/Dashboard/chart";
+
 import Donut from "views/Dashboard/dout";
 import HHHH from "views/Dashboard/html";
 import { bugs, website, server } from "variables/general.jsx";
@@ -93,7 +95,7 @@ class Dashboard extends React.Component {
   componentDidMount() {
     console.log(this.state.series);
     var th = this;
-    getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Dashboard/point.php`)
+    getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Dashboard/avg.php`)
       .then(function (event) {
         th.setState({
           data: event//.data
@@ -103,6 +105,22 @@ class Dashboard extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
+  handel(e){
+    e.preventDefault();
+    window.location.assign('/typography/')
+  }
+  handel2(e){
+    e.preventDefault();
+    window.location.assign('/icons/')
+  }
+  handel3(e){
+    e.preventDefault();
+    window.location.assign('/typography/')
+  }
+  handel4(e){
+    e.preventDefault();
+    window.location.assign('/notifications/')
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -122,7 +140,7 @@ class Dashboard extends React.Component {
               <CardFooter stats>
                 <div className={classes.stats}>
 
-                  <Button round color="warning" style={{ width: "100%" }} > show Students</Button>
+                  <Button round color="warning" style={{ width: "100%" }} onClick={this.handel}> show Students</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -139,7 +157,7 @@ class Dashboard extends React.Component {
               <CardFooter stats>
                 <div className={classes.stats}>
 
-                  <Button round color="success" style={{ width: "100%" }} >show Teachers</Button>
+                  <Button round color="success" style={{ width: "100%" }}onClick={this.handel2} >show Teachers</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -156,7 +174,7 @@ class Dashboard extends React.Component {
               <CardFooter stats>
                 <div className={classes.stats}>
 
-                  <Button round color="danger" style={{ width: "100%" }} >show absence</Button>
+                  <Button round color="danger" style={{ width: "100%" }} onClick={this.handel3}>show absence</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -173,7 +191,7 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Button round color="info" style={{ width: "100%" }} >show Massage</Button>
+                  <Button round color="info" style={{ width: "100%" }} onClick={this.handel4} >show Massage</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -212,6 +230,7 @@ class Dashboard extends React.Component {
 
           </GridItem>
           <Garph />
+          <Garph2 />
 
           <GridItem xs={12} sm={12} md={8} >
             <form onSubmit={this.handleSubmit} onChange={this.updateInput} style={{ textAlign: "center", alignContent: "Center" }}>
@@ -264,7 +283,6 @@ class Dashboard extends React.Component {
 
 
 
-          <Chart1 />
 
           <GridItem xs={12} sm={12} md={4}>
             {/*}
@@ -293,34 +311,11 @@ class Dashboard extends React.Component {
             </Card>
   */}
 
-            <Donut />
+           {/*} <Donut />*/}
           </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <Card chart>
-              <CardHeader color="danger">
-                <ChartistGraph
-                  className="ct-chart"
-                  data={completedTasksChart.data}
-                  type="Line"
-                  options={completedTasksChart.options}
-                  listener={completedTasksChart.animation}
-                />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>Completed Tasks</h4>
-                <p className={classes.cardCategory}>
-                  Last Campaign Performance
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> campaign sent 2 days ago
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
+        
         </GridContainer>
-        <HHHH />
+       {/*} <HHHH />*/}
 
 
         {/*}

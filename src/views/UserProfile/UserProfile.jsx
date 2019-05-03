@@ -288,7 +288,7 @@ class UserProfile extends React.Component {
     return (
       <div>
 
-        <GridContainer>
+        <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={10}>
             <CustomTabs
               title="Principal:"
@@ -300,6 +300,7 @@ class UserProfile extends React.Component {
                   tabContent: (
 
                     <form action="Edit.php" onSubmit={this.handleSubmit}>
+                     <GridContainer justify="center">
                       <GridItem xs={12} sm={12} md={10}>
                         <Card>
 
@@ -308,8 +309,8 @@ class UserProfile extends React.Component {
                             <h3 >Reset Your Password</h3>
                           </CardHeader>
                           <CardBody>
-                            <GridContainer>
-                              <GridContainer>
+                            <GridContainer justify="center">
+                              <GridContainer justify="center">
                                 <InputForm inputType="number" inputKey="id" inputLabel="User ID: " updateInput={this.updateInput} />
                                 <InputForm inputType="password" inputKey="pwd" inputLabel="Current Password : " updateInput={this.updateInput} />
                                 <InputForm inputType="password" inputKey="new_pwd" inputLabel="New Password : " updateInput={this.updateInput} />
@@ -322,17 +323,19 @@ class UserProfile extends React.Component {
                           </CardBody>
 
                           <CardFooter>
-                            <Button color="primary" name="UpdateProfile" type="submit" value="UpdateProfile">Update Profile</Button>
+                            <Button color="info" name="UpdateProfile" type="submit" value="UpdateProfile">Update Profile</Button>
                           </CardFooter>
 
                         </Card>
+                        
                       </GridItem>
-
+                      </GridContainer >
                     </form>
                   )
                 },
               ]}
             />
+            
           </GridItem>
 
 

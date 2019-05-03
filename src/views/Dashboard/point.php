@@ -16,7 +16,7 @@ $input = json_decode($payload, true);
 
 //$param1=$_GET['param1'];
 //$param2=$_GET['param2'];
-$sql="SELECT * FROM grades WHERE level='1st' and id_class='A' ";
+$sql="SELECT point FROM grades  ";
 
 $myArray = array();
 
@@ -26,12 +26,12 @@ if ($result = $link->query($sql)) {
      // echo $result;
         
         $myArray[] = $row;    
-        
-    }
+}
    // echo (int)$myArray;
   // $x=json_encode($myArray);
   // echo $x;
     echo json_encode($myArray,JSON_NUMERIC_CHECK );
+    echo"<br />";
 }
 
  else{
@@ -44,5 +44,23 @@ $num = "1000.314";
 //echo number_format($num), "\n"; 
 
 // Close connection
+
+$count_less_25=0;
+
+$n=count($myArray);
+//echo $n."<br>";
+$result=array();
+foreach ($myArray as $value) {
+  $arr=implode($value);
+  if($arr>=50)echo json_encode($arr)."<br>";
+
+  echo "<br>";
+  if($arr >=50){
+    $count_less_25++; 
+  }
+}
+
+
+echo $count_less_25."<br>";
 mysqli_close($link);
 ?>
