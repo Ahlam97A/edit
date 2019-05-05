@@ -33,9 +33,9 @@ $file=file_get_contents($_FILES['file']['tmp_name']);
      // $line=readline($file);
       $emapData;
       $emapData = explode(",", $line);
-      list ($name, $mname, $lname, $id, $classid, $date, $part_id, $addresss, $phone) = $emapData;
+      list ($name, $mname, $lname, $id,$level, $classid, $date, $part_id, $addresss, $phone,$city) = $emapData;
       print_r($emapData);
-      $sql = "INSERT into  student(name,mname,lname, id,classid,date ,part_id,addresss,phone) values ('$name','$mname','$lname',' $id','$classid','$date' ,'$part_id','$addresss','$phone')";
+      $sql = "INSERT into  student(name,mname,lname, id,level,classid,date ,part_id,addresss,phone,city) values ('$name','$mname','$lname',' $id','$level','$classid','$date' ,'$part_id','$addresss','$phone','$city')";
       mysqli_query($conn,$sql);
       //explode("\n",$file);
    

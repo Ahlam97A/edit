@@ -16,7 +16,7 @@ $input = json_decode($payload, true);
 
 
 
-$sql = "SELECT * FROM class ORDER BY level";
+$sql = "SELECT name,mname,lname,id,level FROM student";
 
 $myArray = array();
 

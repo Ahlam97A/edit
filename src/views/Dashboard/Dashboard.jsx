@@ -115,7 +115,7 @@ class Dashboard extends React.Component {
   }
   handel3(e){
     e.preventDefault();
-    window.location.assign('/typography/')
+    window.location.assign('/Attendees/')
   }
   handel4(e){
     e.preventDefault();

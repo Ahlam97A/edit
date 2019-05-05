@@ -1,4 +1,3 @@
-
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE, PUT');
@@ -6,35 +5,27 @@ header('Access-Control-Allow-Headers: token, Content-Type');
 header('Access-Control-Expose-Headers: *');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Origin: http://localhost:3000');
-$db = new mysqli("localhost", "root", "", "project_new");
-if (!$db) die("database connection error");
-$servername = "localhost";
-$username = "root";
-$password = "";
-// Create connection
-$conn = new mysqli($servername, $username, $password, "project_new");
+$link = mysqli_connect("localhost", "root", "", "project_new");
+ 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "Connected successfully";
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-
 $payload = file_get_contents('php://input');
 $input = json_decode($payload, true);
 
-$Last_name = $input['name'];
-$id = $input['id'];
+mysqli_select_db($link,'project_new');
+$query=("SELECT * FROM teacher");
 
-$sql = "DELETE FROM teacher  WHERE id='$id' and  fname='$Last_name'";
-echo $sql;
-if (mysqli_query($conn, $sql)) {
-    echo "Records deleted successfully.";
-} else {
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-}
+$result=mysqli_query($link,$query);
+$row=mysqli_fetch_array($result);
+$id=$row['id'];
+echo $id;
+mysqli_query($link,"DELETE from teacher WHERE id='$id'");
 
-
-
-
+    //echo "ERROR: Could not able to execute $qu. " . mysqli_error($link);
+echo "done";
+ 
+// Close connection
+mysqli_close($link);
 ?>

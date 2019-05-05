@@ -40,9 +40,10 @@ export default class CheckBox2 extends React.Component{
     render(){
         return(
             <div>
-               <table style={{ border: " 1px solid black", align: "center" }} >
-                    <thead style={{ border: " 1px solid black", background: "#555555" }}>
-                        <tr style={{ border: " 1px solid black" }}>
+               <table style={{ border: " 1px solid black", align: "center",width:"100%" }} >
+                    <thead style={{ border: " 1px solid black", background: "rgb(241, 245, 248)" }}>
+                        <tr style={{ border: " 1px solid black",fontFamily:"Comic Sans MS"  }}>
+                            <th></th>
                             <th>Class</th>
                             <th>Section</th>
                            
@@ -53,20 +54,15 @@ export default class CheckBox2 extends React.Component{
                         {
                             this.state.data.map((item, key) =>
 
-                                <tr key={key}>
-                                    <td><input type="checkbox"  id="check" name={item.level} /></td>
+                                <tr key={key} style={{fontFamily:"Comic Sans MS" }}>
+                                    <td><input type="checkbox"  id="check" name={item.level} style={{color:"blue"}}/>
+                                    </td>
                                     <td>{item.level}</td>
                                     <td>{item.id_class}</td>
                                 </tr>
-
-
                             )      
-
-
                         }
-
                     </tbody>
-
                 </table>
             </div>
         );

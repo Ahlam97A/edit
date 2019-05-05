@@ -81,9 +81,8 @@ class Build2 extends Component {
             <table style={{ background: "pink", border: " 1px solid black" }} >
                 <thead style={{ border: " 1px solid black", background: "red" }}>
                     <tr>
-                        <th>First Name</th>
-                        <th>Mid Name</th>
-                        <th>Last Name</th>
+                        <th> Name</th>
+                      
                         <th>ID Number</th>
                         <th>class_Level</th>
                         <th>class_ID</th>
@@ -169,68 +168,36 @@ class Build2 extends Component {
         return (
             <div className="Table">
                 <table style={{ border: " 1px solid black", align: "center" }} onChange={this.props.get}>
-                    <thead style={{ border: " 1px solid black", background: "#555555" }}>
-                        <tr style={{ border: " 1px solid black" }}>
-                            <th>First Name</th>
-                            <th>Mid Name</th>
-                            <th>Last Name</th>
-
+                    <thead style={{ border: " 1px solid black"}}>
+                        <tr style={{ border: " 1px solid black" ,fontFamily:"Comic Sans MS",fontSize:"18px",background:"rgb(241, 245, 248)"}}>
+                            <th> Name</th>                
                             <th>ID Number</th>
                             <th>class_Level</th>
-
-
-
                             <th>class_ID</th>
-
-                            <th>Date Of Birth </th>
+                           <th>Date Of Birth </th>
                             <th>Parent ID </th>
-
                             <th>Address</th>
                             <th>Phone</th>
-
-
                         </tr>
                     </thead>
-
                     <tbody>
                         {
                             this.state.data.map(item =>
-
-                                <tr key={item.id3}>
-
-                                    <td>{item.name}</td>
-
-                                    <td>{item.mname}</td>
-
-                                    <td>{item.lname}</td>
-
-
-
+                                <tr key={item.id3} style={{fontFamily:"Comic Sans MS",fontSize:"18px"}}>
+                                    <td>{item.name+" "+item.mname+" "+item.lname}</td>
                                     <td>{item.id}</td>
-
-
-
                                     <td>{item.level}</td>
                                     <td>{item.classid}</td>
-
-
                                     <td>{item.date}</td>
-
                                     <td>{item.part_id}</td>
                                     <td>{item.addresss}</td>
 
                                     <td>{item.phone}</td>
 
                                 </tr>
-
-
                             )
-
-
                         }
-
                     </tbody>
-
                 </table>
             </div>
         );

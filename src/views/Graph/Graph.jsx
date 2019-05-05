@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "views/Dashboard/circle.css";
-
+import SimpleModalWrapped from "views/Graph/model";
 import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 export class CircularProgressBar extends React.Component {
@@ -113,17 +113,19 @@ export class Garph extends React.Component {
         return (
             <center>
                 <GridItem xs={12} sm={12} md={12} >
-                    <div style={{ background: "white", textAlign: "center" }}>
+                    <div style={{ background: "white", textAlign: "center",width:"100%" ,}}>
 
                         <p style={{ fontSize: "18px", fontFamily: "Comic Sans MS" }}>Top Student</p>
-                        <span style={{ fontSize: "18px", fontFamily: "Comic Sans MS",background:"blue" }}>
-                            ahlam
+                        <div style={{ fontSize: "18px", fontFamily: "Comic Sans MS",background:"white" ,width:"100%" }}>
+                        
+                           
+                            <SimpleModalWrapped />
                         <CircularProgressBar
                             strokeWidth="5"
-                            sqSize="100"                         
-                            percentage="95"
+                            sqSize="50"                         
+                            percentage="98"
                         />
-                        </span>
+                        </div>
 
                         <CircularProgressBar
                             strokeWidth="5"

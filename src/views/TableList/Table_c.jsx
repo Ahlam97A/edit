@@ -77,11 +77,11 @@ class Build1 extends Component {
 
         <div className="Table">
             <table style={{ background: "pink", border: " 1px solid black" }} >
-                <thead style={{ border: " 1px solid black", background: "red" }}>
+                <thead style={{ border: " 1px solid black" ,fontFamily:"Comic Sans MS"  }}>
                     <tr>
                        
-                        <th>class_Level</th>
-                        <th>class_ID</th>
+                        <th>Class</th>
+                        <th>Section</th>
                         
 
 
@@ -93,7 +93,7 @@ class Build1 extends Component {
                        
                         this.state.data.map(item =>{
                             if(item.id!=0){
-                            <tr key={item.id3}>
+                            <tr key={item.id3} style={{fontFamily:"Comic Sans MS" }}>
                                 <td>{item.level}</td>
                                 <td>{item.id_class}</td> 
                             </tr>
@@ -128,40 +128,25 @@ class Build1 extends Component {
         })
         return (
             <div className="Table">
-                <table style={{ border: " 1px solid black" ,align:"center"}} onChange={this.props.get}>
-                    <thead style={{ border: " 1px solid black", background: "#555555"}}>
+                <table style={{ border: " 1px solid black" ,align:"center",width:"50%"}} onChange={this.props.get}>
+                    <thead style={{ border: " 1px solid black",fontSize:"20px", fontFamily:"Comic Sans MS" ,background:"rgb(241, 245, 248)"}}>
                         <tr style={{ border: " 1px solid black"}}>
-                          
-                             <th>class_level</th>
-                             <th>class_ID</th>
-                              
-                            
-                           
+                      
+                             <th>Class</th>
+                             <th>Section</th>   
                         </tr>
                     </thead>
                     
                     <tbody>
                         {
                             this.state.data.map(item =>
-                               
-                                <tr key={item.id3}>
-
-                                   
-                                    
+                                <tr key={item.id3} style={{fontFamily:"Comic Sans MS" ,align:"center",fontSize:"18px"}}>
                                     <td>{item.level}</td>
                                     <td>{item.id_class}</td>
-                                  
-
                                 </tr>
-                               
-                            
-                            )
-                            
-                            
-                        }
-                        
-                    </tbody>
-                    
+                            )   
+                        }                      
+                    </tbody>                   
                 </table>
             </div>
         );

@@ -22,7 +22,7 @@ class InputForm extends React.Component {
         const styleInput = {
             width: "100%",
             alignContent: "Center",
-            height: "20px",
+            height: "25px",
             margin: "3px 0",
             border: "1px solid #000",
             borderBottomLeftRadius: "10px",
@@ -34,7 +34,7 @@ class InputForm extends React.Component {
         return (
             <div style={{display: 'flex', width: '100%'}}>
                 <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                    <InputLabel style={{ color: "#000", alignContent: "Center" ,fontFamily:"Comic Sans MS" } }> {this.props.inputLabel} </InputLabel>
+                    <InputLabel style={{ color: "#000", alignContent: "Center" ,fontSize:"18px",fontFamily:"Comic Sans MS" } }> {this.props.inputLabel} </InputLabel>
                 </GridItem>
                 <GridItem xs={12} sm={6} md={12}>
                     <input required style={styleInput} type={this.props.inputType} name={this.props.inputKey} onChange={this.props.updateInput} max={this.props.max}/>

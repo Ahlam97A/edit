@@ -74,7 +74,7 @@ const style = {
     width: "200px"
   },
   cardCategoryWhite: {
-    color: "rgba(200,2,2,.62)",
+    color: "rgb(1,1,1)",
     margin: "0",
     fontSize: "16px",
     marginTop: "0",
@@ -276,7 +276,7 @@ class TypographyPage extends React.Component {
       <div style={{ alignContent: "Center" }}>
         <GridContainer justify="center">
 
-          <GridItem xs={12} sm={12} md={10}>
+          <GridItem xs={12} sm={12} md={11}>
             <CustomTabs
               title="Students"
               headerColor="primary"
@@ -287,7 +287,7 @@ class TypographyPage extends React.Component {
                   tabContent: (
                     <form action="a.php" onSubmit={this.handleSubmit} onChange={this.updateInput}>
                       <GridContainer justify="center">
-                        <GridItem xs={12} sm={12} md={10}>
+                        <GridItem xs={12} sm={12} md={11}>
                           <Card justify="center">
                             <CardHeader style={{ background: "#f8bbd0" }}>
                               <h3 className={classes.cardCategoryWhite}>Student Page</h3>
@@ -379,16 +379,7 @@ class TypographyPage extends React.Component {
                       <GridContainer justify="center">
 
                         <FileInput />
-                        {/*}
-                        {process.env.PUBLIC_URL + 'C:/Users/ahlam/OneDrive/Desktop/Untitled spreadsheet - Sheet1.csv'}
-                        <br />
-                        <br />
-                        <a href='C:/Users/ahlam/OneDrive/Desktop/Untitled spreadsheet - Sheet1.csv' >Download</a>
-                        <form onSubmit={this.path}>
-                        <button type="submit"> download</button>
-                        </form>
-                  */}
-                        <a href='http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/Exmple.csv'>Example.csv</a>
+          
                       </GridContainer>
                     </center>
                   )
@@ -434,7 +425,7 @@ class TypographyPage extends React.Component {
                   tabIcon: Code,
                   tabContent: (
                     <form action="search.php" onSubmit={this.handleSubmit5}>
-                      <GridContainer>
+                      <GridContainer justify="center">
                         <GridItem xs={12} sm={12} md={12}>
                           <Card>
                             <CardHeader color="primary">
@@ -444,14 +435,7 @@ class TypographyPage extends React.Component {
 
                             <CardBody>
                               <div className={classes.searchWrapper} style={{ textAlign: "center" }} >
-                                <input style={{ width: "50%", color: "#000", margin: "3px 0", height: "40px", border: "1px solid #ccc", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", borderTopLeftRadius: "10px" }}
-                                  type="text" placeholder="Search" name="search" />
-                                <Button color="white" justIcon round name="search" type="submit" value="search" onChange={this.updateInput}
-                                //onClick={this.toggleHidden.bind(this)}
-                                >
-                                  <Search onSubmit={this.handleSubmit5} />
-
-                                </Button>
+                        
                                 <CardBody>
 
 

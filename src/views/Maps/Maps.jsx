@@ -24,6 +24,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
+import swal from 'sweetalert';
 
 
 const styles = {
@@ -95,6 +96,14 @@ class EditCriteria extends React.Component {
         postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Maps/addClass.php`, this.state)
             .then(data => console.log(JSON.stringify(data)))
             .catch(error => console.error(error));
+        event.target.reset();
+        return swal({
+
+            title: "Add New Class !",
+            
+            icon: "success",
+            button: "Continue!",
+          })
 
 
 
@@ -143,26 +152,58 @@ class EditCriteria extends React.Component {
 
                     </GridItem>
                     <form  action="addClass.php" onSubmit={this.handleSubmit2} >
-                        <GridItem xs={12} sm={12} md={7}>
+                    <GridContainer>
+                        <GridItem xs={12} sm={12} md={12}>
                             <Card>
                                 <CardHeader color="primary">
                                     <h4 className={classes.cardTitleWhite}>Add Classes</h4>
                                 </CardHeader>
                                 <CardBody>
                                     <InputLabel style={{ width: "60%" }}>Class : </InputLabel>
-                                    <input required onChange={this.updateInput} style={{ width: "100%", height: "20px", margin: "3px 0", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} key="level" type="text" name="level" />
+                                  
 
+                                    <select name="sel_s" required  
+                                    style={{ width: "100%", height: "20px", margin: "3px 0", border: "1px solid #000", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} key="level" type="text" name="level"
+                                    onChange={this.updateInput}   /*updateInput={this.updateInput} */ value={this.state.value}>
+                                      <option></option>
+                                      <option name="sel_s">1st</option>
+                                      <option name="sel_s"> 2nd</option>
+                                      <option name="sel_s"> 3th</option>
+                                      <option name="sel_s"> 4th</option>
+                                      <option name="sel_s">5th</option>
+                                      <option name="sel_s">6th</option>
+                                      <option name="sel_s"> 7th</option>
+                                      <option name="sel_s"> 8th</option>
+                                      <option name="sel_s"> 9th</option>
+                                      <option name="sel_s"> 10th</option>
+
+                                    </select>
                                     <InputLabel style={{ width: "60%" }}>Section: </InputLabel>
-                                    <input  required onChange={this.updateInput} style={{ width: "100%", height: "20px", margin: "3px 0", border: "1px solid #ccc", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }} key="id_class" type="number" name="id_classs" />
+                       
+
+                                    <select name="sel_s" required  
+                                    style={{ width: "100%", height: "20px", margin: "3px 0", border: "1px solid #000", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }}   key="id_class" type="number" name="id_classs" 
+                                    onChange={this.updateInput}   /*updateInput={this.updateInput} */ value={this.state.value}>
+                                      <option></option>
+                                      <option name="sel_s">A</option>
+                                      <option name="sel_s"> B</option>
+                                      <option name="sel_s"> C</option>
+                                      <option name="sel_s"> D</option>
+                                      <option name="sel_s">F</option>
+                                    
+                             
+
+                                    </select>
                                 </CardBody>
 
                                 <CardFooter>
 
-                                    <Button color="warning" name="add" type="submit" value="add">Add Class</Button>
+                                    <Button color="primary" name="add" type="submit" value="add">Add Class</Button>
                                 </CardFooter>
                             </Card>
 
                         </GridItem>
+                        </GridContainer>
                     </form>
 
 

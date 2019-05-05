@@ -106,7 +106,7 @@ class TableList extends React.Component {
 
     return (
       <div style={{ alignContent: "Center" }}>
-        <GridContainer>
+        <GridContainer justify="center">
 
           <GridItem xs={12} sm={12} md={10}>
 
@@ -115,7 +115,7 @@ class TableList extends React.Component {
               headerColor="primary"
               tabs={[
                 {
-                  tabName: "Current_Teachers",
+                  tabName: "Current Teachers",
                   tabIcon: Accessibility,
                   tabContent: (
                     <form action="get_t.php" onSubmit={this.handleSubmit5}>
@@ -132,7 +132,7 @@ class TableList extends React.Component {
                 }
                 , {
 
-                  tabName: "Current_Students",
+                  tabName: "Current Students",
                   tabIcon: Accessibility,
                   tabContent: (
                     <form action="get_s.php" onSubmit={this.handleSubmit7}>
@@ -154,17 +154,13 @@ class TableList extends React.Component {
                   )
                 }
                 , {
-                  tabName: "Current_Classes",
+                  tabName: "Current Classes",
                   tabIcon: Code,
                   tabContent: (
                     <form action="get_c.php" onSubmit={this.handleSubmit6}>
                       <GridContainer>
                         <CardBody>
-
                           <center><Build1 /></center>
-
-
-
                         </CardBody>
                       </GridContainer>
                     </form>
@@ -173,15 +169,7 @@ class TableList extends React.Component {
               ]}
             />
           </GridItem>
-
-
         </GridContainer>
-
-
-
-
-
-
       </div>
     )
   }

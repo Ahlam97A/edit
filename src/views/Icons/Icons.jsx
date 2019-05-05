@@ -1,7 +1,7 @@
 import withStyles from "@material-ui/core/styles/withStyles";
 import Code from "@material-ui/icons/Code";
 import Accessibility from "@material-ui/icons/Accessibility";
-import Search from '@material-ui/icons/Search';
+
 import InputLabel from '@material-ui/core/InputLabel';
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 
@@ -13,7 +13,7 @@ import Build from "views/Icons/Table.jsx";
 
 import GridItem from "components/Grid/GridItem.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import Table from "components/Table/Table.jsx";
+import Table1 from "views/Icons/Tablee.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 
 import InputForm from "views/Typography/InputForm.jsx";
@@ -292,7 +292,7 @@ class Icons extends React.Component {
         return (
             <div style={{ alignContent: "Center" }}>
                 <GridContainer justify="center">
-                    <GridItem xs={12} sm={12} md={10}>
+                    <GridItem xs={12} sm={12} md={11}>
                         <CustomTabs
                             title="Teachers:"
                             headerColor="primary"
@@ -307,7 +307,7 @@ class Icons extends React.Component {
                                             <form action="aa.php" onSubmit={this.handleSubmit} onChange={this.updateInput}>
                                                 <GridItem xs={12} sm={10} md={10}>
                                                     <Card>
-                                                        <CardHeader color="info">
+                                                        <CardHeader color="primary">
                                                             <h4 className={classes.cardTitleWhite}>Add A Teacher</h4>
                                                             <p className={classes.cardCategoryWhite}></p>
                                                         </CardHeader>
@@ -348,7 +348,7 @@ class Icons extends React.Component {
                                                         </GridItem>
                                                         </center>
                                                         <CardFooter>
-                                                            <Button color="info" name="Add" type="submit" value="Add" >Add</Button>
+                                                            <Button color="primary" name="Add" type="submit" value="Add" >Add</Button>
                                                         </CardFooter>
                                                     </Card>
                                                 </GridItem>
@@ -371,48 +371,13 @@ class Icons extends React.Component {
                                    
                                    
                                 },
-                                {
-                                    tabName: "Delete Teacher",
-                                    tabIcon: Accessibility,
-                                    tabContent: (
-                                        <GridContainer>
-                                            <GridItem xs={12} sm={12} md={10}>
-                                                <Card>
-                                                    <CardHeader color="info">
-                                                        <h4 className={classes.cardTitleWhite}>Delete  Teachers</h4>
-                                                        <p className={classes.cardCategoryWhite}>based on their id or LastName</p>
-                                                    </CardHeader>
-                                                    <CardBody>
-                                                        <GridContainer>
-
-                                                            <InputForm inputType="text" inputKey="name" inputLabel="Enter The Teacher`s Last Name :" updateInput={this.updateInput} />
-                                                            <InputForm inputType="number" inputKey="id" inputLabel="Enter The TeacherID :" updateInput={this.updateInput} />
-
-
-
-                                                        </GridContainer>
-
-                                                    </CardBody>
-                                                    <CardFooter>
-                                                        <form onSubmit={this.handleSubmit3}>
-                                                            <Button name="Remove" type="submit" value="Remove" color="primary">Delete A Teacher !</Button>
-                                                        </form>
-                                                        <form onSubmit={this.handleSubmit4}>
-                                                            <Button name="Remove" type="submit" value="Remove" color="primary">Delete All Teachers !</Button>
-                                                        </form>
-                                                    </CardFooter>
-                                                </Card>
-                                            </GridItem>
-
-                                        </GridContainer>
-
-                                    )
-                                },
+                              
                                 {
                                     tabName: "Search",
                                     tabIcon: Code,
                                     tabContent: (
                                         <form action="search.php" onSubmit={this.onSubmit11}>
+                                        {/*}
                                             <GridContainer>
                                                 <GridItem xs={12} sm={12} md={12}>
                                                     <Card>
@@ -441,7 +406,40 @@ class Icons extends React.Component {
 
                                                     </Card>
                                                 </GridItem>
-                                            </GridContainer>
+                                    </GridContainer>*/}
+            
+                    <form action="search.php" onSubmit={this.handleSubmit5}>
+                      <GridContainer>
+                        <GridItem xs={12} sm={12} md={12}>
+                          <Card>
+                            <CardHeader color="primary">
+                              <h4 className={classes.cardTitleWhite}>Search on a specific Teacher</h4>
+                              <p className={classes.cardCategoryWhite}>by id </p>
+                            </CardHeader>
+
+                            <CardBody>
+                              <div className={classes.searchWrapper} style={{ textAlign: "center" }} >
+                             
+                             
+                                <CardBody>
+
+
+
+                                  <Table1 />
+
+                                </CardBody>
+                                {/*} <List />*/}
+                              </div>
+                            </CardBody>
+
+
+
+                          </Card>
+                        </GridItem>
+                      </GridContainer>
+                    </form>
+                  )
+                
                                         </form>
 
 

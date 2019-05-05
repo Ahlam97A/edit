@@ -74,7 +74,7 @@ class Table1 extends Component {
         event.preventDefault();
         //alert('Handle it on your own');
         console.log(this.state);
-        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/dele2.php`, this.state)
+        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/dele2.php`, this.state)
             .then(data => console.log(JSON.stringify(data)))
             .catch(error => console.error(error));
 
@@ -84,16 +84,17 @@ class Table1 extends Component {
         event.preventDefault();
         //alert('Handle it on your own');
         console.log(this.state);
-        postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/delete_all.php`, this.state)
+        postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/delete_all2.php`, this.state)
             .then(data => console.log(JSON.stringify(data)))
             .catch(error => console.error(error));
+        this.componentDidMount();
 
 
     }
     componentDidMount() {
         var th = this;
         //this.serverRequest = axios.get(this.props.source)
-        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Typography/search1.php`)
+        getData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/search.php`)
             .then(function (event) {
                 th.setState({
                     data: event//.data
@@ -121,19 +122,9 @@ class Table1 extends Component {
             // console.log("event.target.value",event.target.value);
             let filtered = this.state.data.filter(item => {
                 return (
-                    item.name.toLowerCase().includes(event.target.value.toLowerCase())||
+
                     item.mname.toLowerCase().includes(event.target.value.toLowerCase()) ||
-                    item.id == Number(event.target.value) ||
-                    item.lname.toLowerCase().includes(event.target.value.toLowerCase()) ||
-                    item.classid.toLowerCase().includes(event.target.value.toLowerCase()) ||
-                    item.part_id.toLowerCase().includes(event.target.value.toLowerCase()) ||
-
-                    item.city.toLowerCase().includes(event.target.value.toLowerCase()) ||
-                    item.classid.toLowerCase().includes(event.target.value.toLowerCase()) ||
-                    item.phone.toLowerCase().includes(event.target.value.toLowerCase()) ||
-
-                    item.addresss.toLowerCase().includes(event.target.value.toLowerCase()) ||
-                    item.date.toLowerCase().includes(event.target.value.toLowerCase())
+                    item.id == Number(event.target.value)
 
                 );
             });
@@ -168,10 +159,13 @@ class Table1 extends Component {
         return (
             <div className="Table">
 
-
-                <input style={{ width: "50%", color: "#000", margin: "3px 0", height: "40px", border: "1px solid #000", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", borderTopLeftRadius: "10px" }}
-                    type="text" placeholder="Search" name="search" value={searchString}
-                    onChange={this.search} />
+                <input
+                    type="search"
+                    value={searchString}
+                    onChange={this.search}
+                    style={{ width: "50%", color: "#000", margin: "3px 0", height: "40px", border: "1px solid #000", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderTopRightRadius: "10px", borderTopLeftRadius: "10px" }}
+                    type="text" placeholder="Search" name="search"
+                />
                 <Button color="white" justIcon round name="search" type="submit" value="search" onChange={this.updateInput}
                 //onClick={this.toggleHidden.bind(this)}
                 >
@@ -179,50 +173,50 @@ class Table1 extends Component {
 
                 </Button>
 
-                <center>
-                    <table style={{ border: " 1px solid black", align: "center", width: "100%" }} onChange={this.props.get}>
-                        <thead style={{ border: " 1px solid black", background: "rgb(241, 245, 248)" }}>
-                            <tr style={{ border: " 1px solid black", fontFamily: "Comic Sans MS", fontSize: "18px" }}>
-                                <th>Name</th>
+                <table style={{ border: " 1px solid black", align: "center", width: "100%" }} onChange={this.props.get}>
+                    <thead style={{ background: "rgb(241, 245, 248)", fontFamily: " comic sans ms" }}>
+                        <tr >
+                            <th>Name</th>
 
-                                <th> ID</th>
-                                <th>Class ID</th>
-                                <th>Parant ID</th>
-                                <th>City</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Date Of Birth </th>
-                                <th >Remove </th>
-                            </tr>
-                        </thead>
+                            <th>ID</th>
+                            <th>Subject</th>
+                            <th>Class </th>
 
-                        <tbody>
-                            {
-                                this.state.data.map((item, key) =>
+                            <th>Section</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                            <th>Date Of Birth </th>
+                            <th >Remove </th>
+                        </tr>
+                    </thead>
 
-                                    <tr key={key} style={{ fontFamily: "Comic Sans MS", fontSize: "14px" }}>
-                                        <td>{item.name + " " + item.mname + " " + item.lname}</td>
+                    <tbody>
+                        {
+                            this.state.data.map((item, key) =>
 
-                                        <td>{item.id}</td>
-                                        <td>{item.classid}</td>
-                                        <td>{item.part_id}</td>
-                                        <td>{item.city}</td>
-                                        <td>{item.phone}</td>
-                                        <td>{item.addresss}</td>
-                                        <td>{item.date}</td>
-                                        <td><Button color="primary" justIcon round type="submit" onClick={this.deleteRow}><DeleteIcon /></Button></td>
-                                    </tr>
+                                <tr key={key} style={{ fontFamily: " comic sans ms" }}>
+                                    <td>{item.fname + " " + item.mname + " " + item.lname}</td>
 
+                                    <td>{item.id}</td>
+                                    <td>{item.subject}</td>
+                                    <td>{item.level}</td>
+                                    <td>{item.section}</td>
+                                    <td>{item.city}</td>
+                                    <td>{item.phone}</td>
 
-                                )
+                                    <td>{item.DateBirth}</td>
+                                    <td><Button justIcon round color="primary" type="submit" onClick={this.deleteRow}><DeleteIcon /></Button></td>
+                                </tr>
 
 
-                            }
+                            )
 
-                        </tbody>
 
-                    </table>
-                </center>
+                        }
+
+                    </tbody>
+
+                </table>
                 <Button color="primary" type="submit" onClick={this.deleteall}>Delete All Students<DeleteIcon /></Button>
             </div>
         );
@@ -230,14 +224,3 @@ class Table1 extends Component {
 }
 
 export default Table1
-
-// <div>
-//<h1>All Events</h1>
-//<table>
-  //  <tbody>
-   //     {contents}
- //   </tbody>
-
-//</table>
-
-//</div>

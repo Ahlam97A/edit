@@ -103,40 +103,40 @@ class FileInput extends React.Component {
             .then(formData => console.log(formData))
             .catch(error => console.error(error));
     }
-
+//
     render() {
         // highlight-range{5}
         return (
-            <form action="upload_csvfile1.php" onSubmit={this.handleSubmit}>
-                <GridItem xs={12} sm={12} md={12}>
-                    <Card>
-                        <CardHeader color="info">
-                            <h4 className={this.cardTitleWhite}>Add List Of Teachers</h4>
-                            <p className={this.cardCategoryWhite}></p>
-                        </CardHeader>
-                        <CardBody>
-                            <GridContainer>
-                                <div style={{ alignContent: "center", alignItems: "center" }}>
-                                    <h4 color="primary">To be simple for you to add List of Teachers , you should add A file of .csv extension (FileName.csv).  The file must be  contain Specific Information about the Teachers</h4>
-                                </div>
+            <form action="upload_csvfile.php" onSubmit={this.handleSubmit}>
+            <GridItem xs={12} sm={12} md={12}>
+                <Card>
+                    <CardHeader color="primary">
+                        <h4 className={this.cardTitleWhite}>Add List Of Teachers</h4>
+                        <p className={this.cardCategoryWhite}></p>
+                    </CardHeader>
+                    <CardBody>
+                        <GridContainer justify="center">
+                            <div style={{ textAlign: "center" }}>
+                               <b> <h4 color="primary" style={{textAlign: "center"}} ><b style={{ textAlign: "center" }}>To add List of Teachers , you should add A file of .csv extension<Button style={{background:"#f8bbd0"}}><a href='http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/Book1.csv'>Example.csv</a></Button></b></h4></b>
+                            </div>
 
-                                <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                                    <InputLabel style={{ color: "#000", alignContent: "Center" }}>Select List Of Teachers: </InputLabel>
-                                </GridItem>
-                                <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                                    <input color="primary" type="file" name="file" id="file" ref={this.fileInput} onChange={this.handleFiles} ></input>
-                                </GridItem>
-                            </GridContainer>
-                        </CardBody>
-                        <CardFooter>
-                            <Button color="primary" name="Add" type="submit" value="Add">Add</Button>
-                            
-                            <File />
+                            <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
+                                <InputLabel style={{ color: "#000", alignContent: "Center" }}>Select List Of Teachers: </InputLabel>
+                            </GridItem>
+                            <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
+                                <input color="primary" type="file" name="file" id="file" ref={this.fileInput} onChange={this.handleFiles} ></input>
+                            </GridItem>
+                        </GridContainer>
+                    </CardBody>
+                    <CardFooter>
+                        <Button color="primary" name="Add" type="submit" value="Add">Add</Button>
+                       
+                        <File />
 
-                        </CardFooter>
-                    </Card>
-                </GridItem>
-            </form>
+                    </CardFooter>
+                </Card>
+            </GridItem>
+        </form>
         );
     }
 }

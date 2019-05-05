@@ -3,7 +3,7 @@ import color from '@material-ui/core/colors/deepOrange';
 import React, { Component } from 'react';
 
 
-function getData(url ) {
+function getData(url) {
     // Default options are marked with *
     return fetch(url, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -90,7 +90,7 @@ class Build extends Component {
                         <th>class_Level</th>
                         <th>class_ID</th>
                         <th>Date Of Birth </th>
-                        
+
                         <th>Address</th>
                         <th>Phone</th>
 
@@ -100,37 +100,37 @@ class Build extends Component {
 
                 <tbody>
                     {
-                       
-                        this.state.data.map(item =>{
-                            if(item.id!=0){
-                            <tr key={item.id3}>
 
-                                <td>{item.fname}</td>
+                        this.state.data.map(item => {
+                            if (item.id != 0) {
+                                <tr key={item.id3}>
 
-                                <td>{item.mname}</td>
+                                    <td>{item.fname}</td>
 
-                                <td>{item.lname}</td>
+                                    <td>{item.mname}</td>
 
-                                 <td>{item.city}</td>
+                                    <td>{item.lname}</td>
 
-                                <td>{item.id}</td>
+                                    <td>{item.city}</td>
 
-                                <td>{item.subject}</td>
-                               
-                                <td>{item.level}</td>
-                                <td>{item.id_class}</td>
+                                    <td>{item.id}</td>
+
+                                    <td>{item.subject}</td>
+
+                                    <td>{item.level}</td>
+                                    <td>{item.id_class}</td>
 
 
-                                 <td>{item.DateBirth}</td>
-                                <td>{item.address}</td>
-                               
-                                <td>{item.phone}</td>
-                            </tr>
+                                    <td>{item.DateBirth}</td>
+                                    <td>{item.address}</td>
+
+                                    <td>{item.phone}</td>
+                                </tr>
                             }
                         }
                         )
                     }
-                    
+
                 </tbody>
 
             </table>
@@ -151,8 +151,8 @@ class Build extends Component {
                     <td>{item.id}</td>
 
                     <td>{item.subject}</td>
-                     <td>{item.class_level}</td>
-                      <td>{item.class_id}</td>
+                    <td>{item.class_level}</td>
+                    <td>{item.class_id}</td>
                     <td>{item.phone}</td>
                     <td>{item.address}</td>
                     <td>{item.DateBrith}</td>
@@ -161,59 +161,51 @@ class Build extends Component {
         })
         return (
             <div className="Table">
-                <table style={{ border: " 1px solid black" ,align:"center"}} onChange={this.props.get}>
-                    <thead style={{ border: " 1px solid black", background: "#555555"}}>
-                        <tr style={{ border: " 1px solid black"}}>
-                            <th>First Name</th>
-                            <th>Parent Name</th>
-                            <th>Last Name</th>
+                <table style={{ border: " 1px solid black", align: "center" }} onChange={this.props.get}>
+                    <thead style={{ border: " 1px solid black" }}>
+                        <tr style={{ border: " 1px solid black", fontSize:"20px", fontFamily: "Comic Sans MS", background: "rgb(241, 245, 248)" }}>
+                            <th> Name</th>
+                            <th>ID </th>
+
                             <th>City</th>
-
-                            <th>ID Number</th>
-
                             <th>Subject</th>
-                             <th>class_level</th>
-                             <th>class_ID</th>
-                              <th>Date Of Birth </th>
-                              <th>Address</th>
+                            <th>class</th>
+                            <th>Section</th>
+                            <th>Date Of Birth </th>
+                            <th>Address</th>
                             <th>Phone</th>
-                            
-                           
+
+
                         </tr>
                     </thead>
-                    
+
                     <tbody>
                         {
-                            this.state.data.map((item,i) =>
-                               
-                                <tr key={i}>
+                            this.state.data.map((item, i) =>
 
-                                    <td>{item.fname}</td>
-                                    <td>{item.mname}</td>
-                                    <td>{item.lname}</td>
-                                    <td>{item.city}</td>
+                                <tr key={i} style={{ fontSize: "18px", fontFamily: "Comic Sans MS",}}>
 
+                                    <td>{item.fname + " " + item.mname + " " + item.lname}</td>
                                     <td>{item.id}</td>
-
+                                    <td>{item.city}</td>
                                     <td>{item.subject}</td>
-                                    
                                     <td>{item.level}</td>
                                     <td>{item.section}</td>
-                                  <td>{item.DateBirth}</td>
-                                   
+                                    <td>{item.DateBirth}</td>
+
                                     <td>{item.address}</td>
-                                     <td>{item.phone}</td>
+                                    <td>{item.phone}</td>
 
                                 </tr>
-                               
-                            
+
+
                             )
-                            
-                            
+
+
                         }
-                        
+
                     </tbody>
-                    
+
                 </table>
             </div>
         );

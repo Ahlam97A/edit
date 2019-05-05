@@ -9,6 +9,7 @@ $password = "";
 
 $conn = new mysqli($servername, $username, $password,"project_new");
 
+
 var_dump($_FILES);
 $filepath=$_FILES["file"]["name"];
 $filename=$_FILES["file"];
@@ -16,6 +17,7 @@ $filename=$_FILES["file"];
 
 echo file_get_contents($_FILES['file']['tmp_name']); 
 $file=file_get_contents($_FILES['file']['tmp_name']);
+
 
 
 
@@ -33,9 +35,9 @@ $file=file_get_contents($_FILES['file']['tmp_name']);
      // $line=readline($file);
       $emapData;
       $emapData = explode(",", $line);
-      list ($name, $mname, $lname,$city, $id,$subject,$class_level, $classid, $date, $address, $phone) = $emapData;
+      list ($fname, $mname, $lname,$id,$subject,$city, $phone,$address, $DateBirth,$level, $section) = $emapData;
       print_r($emapData);
-      $sql = "INSERT into  teacher(fname,mname,lname,city ,id,subject,DateBirth,address,phone) values ('$name','$mname','$lname',' $city',' $id','$subject',' $date' ,'$address','$phone')";
+      $sql = "INSERT into  teacher(fname,mname,lname,id,subject,city ,phone,address,DateBirth,level,section) values ('$fname','$mname','$lname','$id','$subject',' $city','$phone','$address','$DateBirth' ,'$level','$section')";
       mysqli_query($conn,$sql);
       //explode("\n",$file);
       //class_level,class_id
