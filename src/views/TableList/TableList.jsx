@@ -108,7 +108,7 @@ class TableList extends React.Component {
       <div style={{ alignContent: "Center" }}>
         <GridContainer justify="center">
 
-          <GridItem xs={12} sm={12} md={10}>
+          <GridItem xs={12} sm={12} md={11}>
 
             <CustomTabs
               title=""

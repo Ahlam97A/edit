@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import "views/Dashboard/circle.css";
 import SimpleModalWrapped from "views/Graph/model";
+import SimpleModalWrapped1 from "views/Graph/model2";
+import SimpleModalWrapped2 from "views/Graph/model3";
+import Button from "components/CustomButtons/Button.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 export class CircularProgressBar extends React.Component {
@@ -108,43 +111,45 @@ export class Garph extends React.Component {
             percentage: event.target.value
         });
     }
-
+    handel(e) {
+        e.preventDefault();
+        window.location.assign('/notifications/')
+      }
     render() {
         return (
             <center>
                 <GridItem xs={12} sm={12} md={12} >
                     <div style={{ background: "white", textAlign: "center",width:"100%" ,}}>
 
-                        <p style={{ fontSize: "18px", fontFamily: "Comic Sans MS" }}>Top Student</p>
+                        <p style={{ fontSize: "18px", fontFamily: "Comic Sans MS" }}>Students With Higher Tracking</p>
                         <div style={{ fontSize: "18px", fontFamily: "Comic Sans MS",background:"white" ,width:"100%" }}>
                         
                            
-                            <SimpleModalWrapped />
-                        <CircularProgressBar
-                            strokeWidth="5"
-                            sqSize="50"                         
-                            percentage="98"
-                        />
-                        </div>
+                         
 
-                        <CircularProgressBar
-                            strokeWidth="5"
-                            sqSize="100"
-                           
-                            percentage="98 "
-                        />
-                        <CircularProgressBar
-                            strokeWidth="5"
-                            sqSize="50"
-                           
-                            percentage="96 "
-                        />
-                        <CircularProgressBar
-                            strokeWidth="5"
-                            sqSize="50"
-                           
-                            percentage="93"
-                        ></CircularProgressBar>
+              <SimpleModalWrapped />
+              <CircularProgressBar
+                strokeWidth="5"
+                sqSize="50"
+                percentage="98"
+              />  <Button round  style={{width:"100%",background:"#000"}} onClick={this.handel}>Send massage</Button>
+              <hr></hr>
+              <SimpleModalWrapped1/>
+              <CircularProgressBar
+                strokeWidth="5"
+                sqSize="50"
+                percentage="97"
+              /> <Button round  style={{width:"100%",background:"#000"}} onClick={this.handel}>Send massage</Button>
+                   <hr></hr>
+              <SimpleModalWrapped2 />
+              <CircularProgressBar
+                strokeWidth="5"
+                sqSize="50"
+                percentage="96"
+              />   <Button round  style={{width:"100%",background:"#000"}} onClick={this.handel}>Send massage</Button>   
+              <hr></hr>
+         
+              </div>
                         <div>
 
                     </div>

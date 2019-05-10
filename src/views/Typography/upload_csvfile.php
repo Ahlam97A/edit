@@ -27,20 +27,17 @@ $file=file_get_contents($_FILES['file']['tmp_name']);
 
 
    foreach(preg_split("/((\r?\n)|(\r\n?))/",$file) as $line){
-      // do stuff with $line
-  
-     // echo 'Haaaaaaaaaaay';
-     // $line=readline($file);
+     
       $emapData;
       $emapData = explode(",", $line);
       list ($name, $mname, $lname, $id,$level, $classid, $date, $part_id, $addresss, $phone,$city) = $emapData;
       print_r($emapData);
-      $sql = "INSERT into  student(name,mname,lname, id,level,classid,date ,part_id,addresss,phone,city) values ('$name','$mname','$lname',' $id','$level','$classid','$date' ,'$part_id','$addresss','$phone','$city')";
+      $sql = "INSERT into  student(name,mname,lname, id,level,classid,date ,part_id,addresss,phone,city) 
+      values ('$name','$mname','$lname',' $id','$level','$classid','$date' ,'$part_id','$addresss','$phone','$city')";
       mysqli_query($conn,$sql);
-      //explode("\n",$file);
-   
+  
    }
-  // }
+ 
   
   
   // if($emapData==''){

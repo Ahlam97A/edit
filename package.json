@@ -13,6 +13,7 @@
     "apexcharts": "^3.6.7",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.0",
+    "chart.js": "^2.8.0",
     "chartist": "0.10.1",
     "classnames": "2.2.6",
     "npm-run-all": "4.1.3",

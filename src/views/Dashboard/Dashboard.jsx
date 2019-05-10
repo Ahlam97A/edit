@@ -25,14 +25,14 @@ import Info from "components/Typography/Info.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import Quote from "components/Typography/Quote.jsx";
 import Danger from "components/Typography/Danger.jsx";
-
+import { CircularProgressBar } from "views/Graph/Graph";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Primary from "components/Typography/Primary.jsx";
-
+import SimpleModalWrapped from "views/Graph/model";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
-import {Garph} from "views/Graph/Graph";
-import {Garph2} from "views/Graph/Graph2";
+import { Garph } from "views/Graph/Graph";
+import { Garph2 } from "views/Graph/Graph2";
 
 import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
@@ -83,11 +83,11 @@ class Dashboard extends React.Component {
     }
   }
 
-  notif= (e) => {
-    
-      e.preventDefault();
-      window.location.assign('/notifications/');
-    
+  notif = (e) => {
+
+    e.preventDefault();
+    window.location.assign('/notifications/');
+
   }
   handleChange = (event, value) => {
     this.setState({ value });
@@ -105,19 +105,19 @@ class Dashboard extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
-  handel(e){
+  handel(e) {
     e.preventDefault();
     window.location.assign('/typography/')
   }
-  handel2(e){
+  handel2(e) {
     e.preventDefault();
     window.location.assign('/icons/')
   }
-  handel3(e){
+  handel3(e) {
     e.preventDefault();
     window.location.assign('/Attendees/')
   }
-  handel4(e){
+  handel4(e) {
     e.preventDefault();
     window.location.assign('/notifications/')
   }
@@ -125,7 +125,8 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <GridContainer>
+
+        <GridContainer justify="center">
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="warning" stats icon>
@@ -157,7 +158,7 @@ class Dashboard extends React.Component {
               <CardFooter stats>
                 <div className={classes.stats}>
 
-                  <Button round color="success" style={{ width: "100%" }}onClick={this.handel2} >show Teachers</Button>
+                  <Button round color="success" style={{ width: "100%" }} onClick={this.handel2} >show Teachers</Button>
                 </div>
               </CardFooter>
             </Card>
@@ -198,40 +199,60 @@ class Dashboard extends React.Component {
           </GridItem>
         </GridContainer>
 
+        <GridContainer justify="center">
+          <GridItem xs={12} sm={12} md={5}>
+            <Card>
+              <CardHeader style={{ background: "rgb(18, 233, 11)" }}>
+                <h4 className={classes.cardTitleWhite} style={{ fontSize: "18px", fontFamily: "Comic Sans MS" }}>Students With Higher Tracking</h4>
+                <p className={classes.cardCategoryWhite}>
 
-        <GridContainer>
-          <GridItem xs={12} sm={12} md={6}>
-            {/*}
-            <Card chart>
-              <CardHeader color="success">
-                <ChartistGraph
-                  className="ct-chart"
-                  data={dailySalesChart.data}
-                  type="Line"
-                  options={dailySalesChart.options}
-                  listener={dailySalesChart.animation}
-                />
+                </p>
               </CardHeader>
               <CardBody>
-                <h4 className={classes.cardTitle}>Daily Sales</h4>
-                <p className={classes.cardCategory}>
-                  <span className={classes.successText}>
-                    <ArrowUpward className={classes.upArrowCardCategory} /> 55%
-                  </span>{" "}
-                  increase in today sales.
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> updated 4 minutes ago
-                </div>
-              </CardFooter>
-    </Card>*/}
 
+                <Garph />
+              </CardBody>
+            </Card>
           </GridItem>
+          <GridItem xs={12} sm={12} md={5}>
+            <Card>
+              <CardHeader style={{ background: "rgb(175, 25, 25)" }}>
+                <h4 className={classes.cardTitleWhite} style={{ fontSize: "18px", fontFamily: "Comic Sans MS" }}>Students With Lower Tracking</h4>
+                <p className={classes.cardCategoryWhite}>
+
+                </p>
+              </CardHeader>
+              <CardBody>
+
+
+                <Garph2 />
+              </CardBody>
+            </Card>
+          </GridItem>
+        </GridContainer>
+        <GridContainer>
+
+
+
+          {/*}
           <Garph />
           <Garph2 />
+  */}
 
+
+          {/*}
+     <div></div>
+          <div><SimpleModalWrapped /> </div>
+          <div><CircularProgressBar strokeWidth="5" sqSize="50" percentage="98" />  </div>
+          <div><SimpleModalWrapped /> </div>
+          <div><CircularProgressBar strokeWidth="5" sqSize="50" percentage="98" />  </div>
+          <div><SimpleModalWrapped /> </div>
+          <div><CircularProgressBar strokeWidth="5" sqSize="50" percentage="98" />  </div>
+          <div><SimpleModalWrapped /> </div>
+          <div><CircularProgressBar strokeWidth="5" sqSize="50" percentage="98" />  </div>
+*/}
+
+          {/*}
           <GridItem xs={12} sm={12} md={8} >
             <form onSubmit={this.handleSubmit} onChange={this.updateInput} style={{ textAlign: "center", alignContent: "Center" }}>
               <GridContainer justify="center">
@@ -247,22 +268,22 @@ class Dashboard extends React.Component {
                         <GridItem xs={12} sm={12} md={12} style={{ textAlign: "center" }} >
                           {
                             this.state.data.map((item, i) => (
-                              <table key={i} style={{textAlign:"center"}}>
-                              <tbody>
-                              <tr style={{ background: "#e1bee7",fontSize:"20px",textAlign:"center"}}>
-                                <td>
-                                <pre  style={{ background: "#e1bee7", color: "#000", fontFamily: "Comic Sans MS", width: "500px", }}>{item.name} {item.point}% 
+                              <table key={i} style={{ textAlign: "center" }}>
+                                <tbody>
+                                  <tr style={{ background: "#e1bee7", fontSize: "20px", textAlign: "center" }}>
+                                    <td>
+                                      <pre style={{ background: "#e1bee7", color: "#000", fontFamily: "Comic Sans MS", width: "500px", }}>{item.name} {item.point}%
                                 Section :{item.level} </pre>
-                                </td>
-                                <td>
-                                <button style={{ textAlign: "left" }}  onClick={(e) => {
-                                                e.preventDefault();
-                                                window.location.assign('/notifications/'+ item.name + '/' + item.id + '/' + item.parent);
-                                            }}>Maggess</button></td>
-                              </tr>
-                              </tbody>
-                             
-                                
+                                    </td>
+                                    <td>
+                                      <button style={{ textAlign: "left" }} onClick={(e) => {
+                                        e.preventDefault();
+                                        window.location.assign('/notifications/' + item.name + '/' + item.id + '/' + item.parent);
+                                      }}>Maggess</button></td>
+                                  </tr>
+                                </tbody>
+
+
                               </table>
                             )
                             )
@@ -271,15 +292,15 @@ class Dashboard extends React.Component {
                         </GridItem>
                       </GridContainer>
                     </CardBody>
-                    
+
                   </Card>
                 </GridItem>
               </GridContainer>
             </form>
-            </GridItem>
-         
+          </GridItem>
 
 
+                        */}
 
 
 
@@ -311,11 +332,11 @@ class Dashboard extends React.Component {
             </Card>
   */}
 
-           {/*} <Donut />*/}
+            {/*} <Donut />*/}
           </GridItem>
-        
+
         </GridContainer>
-       {/*} <HHHH />*/}
+        {/*} <HHHH />*/}
 
 
         {/*}

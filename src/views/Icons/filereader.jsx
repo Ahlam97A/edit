@@ -10,7 +10,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import Primary from "components/Typography/Primary.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-
+import swal from 'sweetalert';
 import File from "views/Icons/file1";
 function postData(url, formData) {
     // Default options are marked with *
@@ -102,6 +102,13 @@ class FileInput extends React.Component {
         postData(`http://localhost/material-dashboard-react-v1.5.0/src/views/Icons/upload_csvfile1.php`, formData)
             .then(formData => console.log(formData))
             .catch(error => console.error(error));
+        event.target.reset();
+            return swal({
+
+                title: "Add File of Teacher Successfully!", 
+                icon: "success",
+                button: "Continue!",
+              })
     }
 //
     render() {
@@ -124,7 +131,7 @@ class FileInput extends React.Component {
                                 <InputLabel style={{ color: "#000", alignContent: "Center" }}>Select List Of Teachers: </InputLabel>
                             </GridItem>
                             <GridItem xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
-                                <input color="primary" type="file" name="file" id="file" ref={this.fileInput} onChange={this.handleFiles} ></input>
+                                <input color="primary" required type="file" name="file" id="file" ref={this.fileInput} onChange={this.handleFiles} ></input>
                             </GridItem>
                         </GridContainer>
                     </CardBody>

@@ -5,7 +5,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Xxx from "views/Graphh/text";
 import Chart1 from "views/Dashboard/chart";
 import Donut from "views/Dashboard/dout";
-
+import Charts from "views/Dashboard/chart1"
 function getData(url, data) {
     // Default options are marked with *
     if (data != " ") {
@@ -73,10 +73,14 @@ export default class Chart extends React.Component {
             <center>
                 <GridItem xs={12} sm={12} md={12} >
                     <div style={{ textAlign: "center" }}>
+
+                    {/*}
                         <Donut />
 
                         <Chart1 />
-
+        */}
+                        <Charts />
+{/*}
                         <p style={{ fontSize: "18px", fontFamily: "Comic Sans MS" }}></p>
                         ahlam
                         <div>
@@ -90,8 +94,9 @@ export default class Chart extends React.Component {
 
                             </select>
                                 <Xxx />
+                            
                         </div>
-
+*/}
 
                     </div>
                 </GridItem>

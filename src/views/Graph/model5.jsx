@@ -50,7 +50,7 @@ class SimpleModal extends React.Component {
     return (
       <div>
         <Typography gutterBottom></Typography>
-        <Button onClick={this.handleOpen} color="primary">Ahlam abd kharrousheh</Button>
+        <Button onClick={this.handleOpen} color="primary">hala mohmmad yamin</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -65,7 +65,7 @@ class SimpleModal extends React.Component {
             Section:A
             </Typography>
             <Typography variant="subtitle1" id="simple-modal-description">
-            Attendance :0
+            Attendance :6
             </Typography>
           </div>
         </Modal>
@@ -79,6 +79,6 @@ SimpleModal.propTypes = {
 };
 
 // We need an intermediary variable for handling the recursive nesting.
-const SimpleModalWrapped = withStyles(styles)(SimpleModal);
+const SimpleModalWrapped5 = withStyles(styles)(SimpleModal);
 
-export default SimpleModalWrapped;
+export default SimpleModalWrapped5;

@@ -29,18 +29,13 @@ $file=file_get_contents($_FILES['file']['tmp_name']);
 
 
    foreach(preg_split("/((\r?\n)|(\r\n?))/",$file) as $line){
-      // do stuff with $line
-  
-     // echo 'Haaaaaaaaaaay';
-     // $line=readline($file);
       $emapData;
       $emapData = explode(",", $line);
       list ($fname, $mname, $lname,$id,$subject,$city, $phone,$address, $DateBirth,$level, $section) = $emapData;
       print_r($emapData);
-      $sql = "INSERT into  teacher(fname,mname,lname,id,subject,city ,phone,address,DateBirth,level,section) values ('$fname','$mname','$lname','$id','$subject',' $city','$phone','$address','$DateBirth' ,'$level','$section')";
+      $sql = "INSERT into  teacher(fname,mname,lname,id,subject,city ,phone,address,DateBirth,level,section) 
+      values ('$fname','$mname','$lname','$id','$subject',' $city','$phone','$address','$DateBirth' ,'$level','$section')";
       mysqli_query($conn,$sql);
-      //explode("\n",$file);
-      //class_level,class_id
    }
   // }
   

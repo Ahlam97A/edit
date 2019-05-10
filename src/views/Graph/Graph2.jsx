@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import SimpleModalWrapped from "views/Graph/model";
+import SimpleModalWrapped5 from "views/Graph/model5.jsx";
+import SimpleModalWrapped6 from "views/Graph/model6.jsx";
+import SimpleModalWrapped7 from "views/Graph/model7.jsx";
 
+import Button from "components/CustomButtons/Button.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import "views/Graph/graph.css";
@@ -48,9 +53,9 @@ export class CircularProgressBar extends React.Component {
                     className="circle-text"
                     x="50%"
                     y="50%"
-                    dy=".3em"
+                    dy="9px"
                     textAnchor="middle">
-                    {`${this.props.text}`}
+                   
                     {`${this.props.percentage}%`}
 
                 </text>
@@ -60,7 +65,7 @@ export class CircularProgressBar extends React.Component {
 }
 
 CircularProgressBar.defaultProps = {
-    sqSize: 200,
+    sqSize: 100,
     percentage: 25,
     strokeWidth: 20
 };
@@ -102,7 +107,10 @@ export class Garph2 extends React.Component {
         this.handleChangeEvent = this.handleChangeEvent.bind(this);
     }
 
-
+    handel(e) {
+        e.preventDefault();
+        window.location.assign('/notifications/')
+      }
     handleChangeEvent(event) {
         this.setState({
             percentage: event.target.value
@@ -112,44 +120,38 @@ export class Garph2 extends React.Component {
     render() {
         return (
             <center>
-          
-
-                <GridItem xs={12} sm={12} md={12} >
-                    <div style={{ background: "white", textAlign: "center" }}>
-
-                        <p style={{ fontSize: "18px", fontFamily: "Comic Sans MS" }}>Worst Student</p>
-                        <CircularProgressBar
-                            strokeWidth="10"
-                            sqSize="250"
-                            text="salam"
-                            percentage="66"
-                        />
-
-                        <CircularProgressBar
-                            strokeWidth="10"
-                            sqSize="260"
-                            text="hala"
-                            percentage="55 "
-                        />
-                        <CircularProgressBar
-                            strokeWidth="10"
-                            sqSize="260"
-                            text="ahlam"
-                            percentage="50 "
-                        />
-                        <CircularProgressBar
-                            strokeWidth="10"
-                            sqSize="260"
-                            text="lama"
-                            percentage="67"
-                        ></CircularProgressBar>
+             <p style={{ fontSize: "18px", fontFamily: "Comic Sans MS" }}>Students With Lower Tracking</p>
+                        
+              <SimpleModalWrapped5 />
+              <CircularProgressBar
+                strokeWidth="5"
+                sqSize="50"
+                percentage="50"
+              />  <Button round  style={{width:"100%",background:"#000"}} onClick={this.handel}>Send massage</Button>
+           
+              <hr></hr>
+              <SimpleModalWrapped6 />
+              <CircularProgressBar
+                strokeWidth="5"
+                sqSize="50"
+                percentage="55"
+              />  <Button round  style={{width:"100%",background:"#000"}} onClick={this.handel}>Send massage</Button>
+              <hr></hr>
+              <SimpleModalWrapped7 />
+              <CircularProgressBar
+                strokeWidth="5"
+                sqSize="50"
+                percentage="57"
+              />  <Button round  style={{width:"100%",background:"#000"}} onClick={this.handel}>Send massage</Button>
+         
+          <hr></hr>
                         <div>
 
-                    </div>
+                 
 
 
                     </div>
-                </GridItem>
+               
             </center>
         );
     }

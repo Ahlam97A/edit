@@ -30,6 +30,7 @@ class Chart1 extends Component {
         chart: {
           id: "basic-bar"
         },
+      
         xaxis: {
           categories: ['1st','1st']
         }
@@ -98,6 +99,7 @@ class Chart1 extends Component {
               series={this.state.series}
               type="bar"
               width="500"
+              
               
             />
           </div>
